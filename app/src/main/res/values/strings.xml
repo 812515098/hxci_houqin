@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name" >后勤系统</string>
+    <string name="setting" >手机设置</string>
 </resources>
