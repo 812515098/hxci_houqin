@@ -12,8 +12,10 @@
         <activity android:name=".MainActivity">
 
         </activity>
-        <activity android:name=".SettingActivity" >
+        <activity android:name=".SettingActivity" android:label="@string/setting" >
 
+        </activity>
+        <activity android:name=".loginActivity"  android:theme="@style/login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
