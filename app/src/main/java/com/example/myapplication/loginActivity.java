@@ -1,12 +1,9 @@
 package com.example.myapplication;
-
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
+import android.os.Bundle; 
 import android.widget.EditText;
-
 import androidx.annotation.Nullable;
-
 public class loginActivity extends Activity {
     EditText user,pass;
     @Override

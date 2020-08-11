@@ -3,4 +3,10 @@
     <color name="colorPrimary">#31A1D3</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#C9C3C6</color>
+    <color name="comui_tab">#ff919293</color>
+    <!--选中按钮的颜色-->
+    <color name="comui_tab_selected">#00BCD4</color>
+    <color name="index_bg">#E7E7DF</color>
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
 </resources>

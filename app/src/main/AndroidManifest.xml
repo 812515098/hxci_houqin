@@ -13,15 +13,18 @@
 
         </activity>
         <activity android:name=".SettingActivity" android:label="@string/setting" >
-
         </activity>
         <activity android:name=".loginActivity"  android:theme="@style/login">
+        </activity>
+        <activity android:name=".index_jiaoshiActivity" android:label="@string/jiaoshi_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".tongzhiActivity" android:label="@string/tongzhi"/>
+        <activity android:name=".baoxiumesaageActivity"  android:theme="@style/Theme.AppCompat.NoActionBar"/>
     </application>
 
 </manifest>

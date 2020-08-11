@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name" >后勤系统</string>
     <string name="setting" >手机设置</string>
+    <string name="jiaoshi_login" >哈信息后勤</string>
+    <string name="tongzhi" >通知</string>
+    <string name="baoxiu_mess" >报修信息</string>
 </resources>
