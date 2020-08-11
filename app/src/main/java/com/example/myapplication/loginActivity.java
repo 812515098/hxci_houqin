@@ -12,14 +12,6 @@ public class loginActivity extends Activity {
         setContentView(R.layout.login);
         user=findViewById(R.id.Edit_user);
         pass=findViewById(R.id.Edit_pass);
-        Drawable searchEditDraw = getResources().getDrawable(R.drawable.denglu_zh);
-        Drawable searchEditDrawmm = getResources().getDrawable(R.drawable.denglu_mm);
-        Drawable searchEditDrawyc = getResources().getDrawable(R.drawable.denglu_yc);
-        searchEditDraw.setBounds(0, 0, 30, 30);
-        searchEditDrawmm.setBounds(0, 0, 30, 30);
-        searchEditDrawyc.setBounds(0, 0, 25, 25);
-        user.setCompoundDrawables(searchEditDraw, null, null, null);
-        pass.setCompoundDrawables(searchEditDrawmm,null,searchEditDrawyc,null);
 
 /*
         if(isChecked){

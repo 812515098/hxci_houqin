@@ -5,6 +5,8 @@
     android:background="#fff"
     android:orientation="vertical">
 
+
+
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -14,46 +16,100 @@
         android:src="@drawable/denglu_logo"
         />
 
-    <EditText
-        android:id="@+id/Edit_user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_marginTop="100dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
-        android:drawableLeft="@drawable/denglu_zh"
-        android:drawablePadding="3dp"
-        android:hint="手机号/学号/工号"
-        android:singleLine="true"
-        android:theme="@style/Editxcolor" />
-
-    <EditText
-        android:id="@+id/Edit_pass"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:scaleType="centerInside"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:src="@drawable/denglu_zh" />
+
+<EditText
+    android:id="@+id/Edit_user"
+    android:layout_width="match_parent"
+    android:background="@null"
+    android:theme="@style/Editxcolor"
+    android:hint="手机号/学号/工号"
+    android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BCBCBC" />
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:scaleType="centerInside"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:src="@drawable/denglu_mm" />
+
+        <EditText
+            android:id="@+id/Edit_pass"
+            android:layout_width="288dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="记住密码"
+            android:theme="@style/Editxcolor" />
+
+        <ImageView
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/denglu_yc" />
+
+    </LinearLayout>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BCBCBC" />
+
+
+    <CheckBox
+        android:id="@+id/jizhumima"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:drawableLeft="@drawable/denglu_mm"
-        android:drawableRight="@drawable/denglu_yc"
-        android:drawablePadding="3dp"
-        android:hint="密码"
-        android:inputType="textPassword"
-        android:singleLine="true"
-        android:theme="@style/Editxcolor" />
-        <RadioButton
-            android:id="@+id/jizhumima"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="记住密码"
-            android:checked="true"
-            android:layout_marginLeft="220dp"
-            android:textColor="#000" />
-
+        android:theme="@style/AppTheme"
+        android:text="记住密码"
+        android:textColor="#414141" />
     <Button
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:background="@drawable/denglu_bt"/>
+        android:layout_height="50dp"
+        android:background="@drawable/denglu_bt" />
 <ImageView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

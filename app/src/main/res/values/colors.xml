@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#31A1D3</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#0093FF</color>
+    <color name="colorPrimaryDark">#8F8F91</color>
     <color name="colorAccent">#C9C3C6</color>
+<<<<<<< HEAD
     <color name="comui_tab">#ff919293</color>
     <!--选中按钮的颜色-->
     <color name="comui_tab_selected">#00BCD4</color>
     <color name="index_bg">#E7E7DF</color>
     <color name="white">#fff</color>
     <color name="black">#000</color>
+=======
+    <color name="colorCheckBox">#0056FF</color>
+>>>>>>> afe483bbc6f0fd3a410a6ff38da3142640ac54d6
 </resources>
