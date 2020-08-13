@@ -9,22 +9,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".SettingActivity" android:label="@string/setting" >
-        </activity>
-        <activity android:name=".loginActivity"  android:theme="@style/login">
-        </activity>
-        <activity android:name=".index_jiaoshiActivity" android:label="@string/jiaoshi_login">
+        <activity android:name=".index_guanliyuanActivity"></activity>
+        <activity android:name=".index_weixiurenyuanActivity" />
+        <activity android:name=".index_xueshengActivity" />
+        <activity
+            android:name=".loginActivity"
+            android:theme="@style/login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".tongzhiActivity" android:label="@string/tongzhi"/>
-        <activity android:name=".baoxiumesaageActivity"  android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".SettingActivity"
+            android:label="@string/setting" />
+        <activity
+            android:name=".index_jiaoshiActivity"
+            android:label="@string/jiaoshi_login" />
+        <activity
+            android:name=".tongzhiActivity"
+            android:label="@string/tongzhi" />
+        <activity
+            android:name=".baoxiumesaageActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>

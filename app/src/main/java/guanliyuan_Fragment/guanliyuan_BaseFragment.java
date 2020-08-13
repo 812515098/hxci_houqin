@@ -1,4 +1,4 @@
-package Fragemnt1;
+package guanliyuan_Fragment;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;
@@ -7,7 +7,7 @@ import android.os.Build;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-public class BaseFragment extends Fragment {
+public class guanliyuan_BaseFragment extends Fragment {
     protected Activity mContext;
 
     /**

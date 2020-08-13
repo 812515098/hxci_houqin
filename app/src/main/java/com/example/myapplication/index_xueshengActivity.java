@@ -1,38 +1,35 @@
 package com.example.myapplication;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import xuesheng_Fragment.xuesheng_baoxiufragment;
+import xuesheng_Fragment.xuesheng_myfragment;
+import xuesheng_Fragment.xuesheng_shouyefragement;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import jiaoshi_Fragment.jiaoshi_baoxiufragment;
-import jiaoshi_Fragment.jiaoshi_myfragment;
-import jiaoshi_Fragment.jiaoshi_shouyefragement;
-
-
-public class index_jiaoshiActivity extends AppCompatActivity implements View.OnClickListener {
-    public static index_jiaoshiActivity instance;
+public class index_xueshengActivity extends AppCompatActivity implements View.OnClickListener {
     private FragmentManager fm;
     private Fragment mCommonFragmentOne;
-    private jiaoshi_myfragment jiaoshi_myframent;
-    private jiaoshi_baoxiufragment jiaoshi_baoxiufragment;
-    private jiaoshi_shouyefragement jiaoshi_shouyefragement;
+    private xuesheng_myfragment xuesheng_myframent;
+    private xuesheng_baoxiufragment xuesheng_baoxiufragment;
+    private xuesheng_shouyefragement xuesheng_shouyefragement;
     private Fragment mCurrent;
     private RelativeLayout shouye_Relat,baoxiu_Relat,my_relat;
     private ImageView shouye_im,baoxiu_im,my_im;
     private TextView shouye_tv,baoxiu_tv,my_tv;
     private long exitTime = 0;
-
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.index_jiaoshi);
+        setContentView(R.layout.activity_index_xuesheng);
         initView();
 
     }
@@ -43,25 +40,24 @@ public class index_jiaoshiActivity extends AppCompatActivity implements View.OnC
 
     protected void initView() {
 
-        shouye_Relat = findViewById(R.id.shouye_Relat);
+        shouye_Relat = findViewById(R.id.xuesheng_shouye_Relat);
         shouye_Relat.setOnClickListener(this);
-        baoxiu_Relat =  findViewById(R.id.baoxiu_relat);
+        baoxiu_Relat =  findViewById(R.id.xuesheng_baoxiu_relat);
         baoxiu_Relat.setOnClickListener(this);
-        my_relat = findViewById(R.id.my_relat);
+        my_relat = findViewById(R.id.xuesheng_my_relat);
         my_relat.setOnClickListener(this);
-
-        shouye_im = findViewById(R.id.shouye_im);
-        shouye_tv = findViewById(R.id.shouye_textview);
-        baoxiu_im = findViewById(R.id.baoxiuim);
-        baoxiu_tv = findViewById(R.id.baoxiutv);
-        my_im = findViewById(R.id.my_im);
-        my_tv =  findViewById(R.id.mine_tv);
+        shouye_im = findViewById(R.id.xuesheng_shouye_im);
+        shouye_tv = findViewById(R.id.xuesheng_shouye_textview);
+        baoxiu_im = findViewById(R.id.xuesheng_baoxiuim);
+        baoxiu_tv = findViewById(R.id.xuesheng_baoxiutv);
+        my_im = findViewById(R.id.xuesheng_my_im);
+        my_tv =  findViewById(R.id.xuesheng_mine_tv);
         shouye_im.setImageDrawable(getResources().getDrawable(R.drawable.shouye));
         shouye_tv.setTextColor(getResources().getColor(R.color.comui_tab_selected));
-        jiaoshi_shouyefragement = new jiaoshi_shouyefragement();
+        xuesheng_shouyefragement = new xuesheng_shouyefragement();
         fm = this.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.content_layout, jiaoshi_shouyefragement);
+        fragmentTransaction.replace(R.id.xuesheng_content_layout, xuesheng_shouyefragement);
         fragmentTransaction.commit();
     }
 
@@ -80,13 +76,13 @@ public class index_jiaoshiActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.shouye_Relat:
+            case R.id.xuesheng_shouye_Relat:
                 labelSelection(0);
                 break;
-            case R.id.baoxiu_relat:
+            case R.id.xuesheng_baoxiu_relat:
                 labelSelection(1);
                 break;
-            case R.id.my_relat:
+            case R.id.xuesheng_my_relat:
                 labelSelection(2);
                 break;
             default:
@@ -106,14 +102,14 @@ public class index_jiaoshiActivity extends AppCompatActivity implements View.OnC
                 my_im.setImageDrawable(getResources().getDrawable(R.drawable.my_2));
                 my_tv.setTextColor(getResources().getColor(R.color.comui_tab));
                 hideFragment(mCommonFragmentOne, fragmentTransaction);
-                hideFragment(jiaoshi_baoxiufragment, fragmentTransaction);
-                hideFragment(jiaoshi_myframent, fragmentTransaction);
-                if (jiaoshi_shouyefragement == null) {
-                    jiaoshi_shouyefragement = new jiaoshi_shouyefragement();
-                    fragmentTransaction.add(R.id.content_layout, jiaoshi_shouyefragement);
+                hideFragment(xuesheng_baoxiufragment, fragmentTransaction);
+                hideFragment(xuesheng_myframent, fragmentTransaction);
+                if (xuesheng_shouyefragement == null) {
+                    xuesheng_shouyefragement = new xuesheng_shouyefragement();
+                    fragmentTransaction.add(R.id.xuesheng_content_layout, xuesheng_shouyefragement);
                 } else {
-                    mCurrent = jiaoshi_shouyefragement;
-                    fragmentTransaction.show(jiaoshi_shouyefragement);
+                    mCurrent = xuesheng_shouyefragement;
+                    fragmentTransaction.show(xuesheng_shouyefragement);
                 }
                 break;
             case 1:
@@ -124,14 +120,14 @@ public class index_jiaoshiActivity extends AppCompatActivity implements View.OnC
                 my_im.setImageDrawable(getResources().getDrawable(R.drawable.my_2));
                 my_tv.setTextColor(getResources().getColor(R.color.comui_tab));
                 hideFragment(mCommonFragmentOne, fragmentTransaction);
-                hideFragment(jiaoshi_shouyefragement, fragmentTransaction);
-                hideFragment(jiaoshi_myframent, fragmentTransaction);
-                if (jiaoshi_baoxiufragment == null) {
-                    jiaoshi_baoxiufragment = new jiaoshi_baoxiufragment();
-                    fragmentTransaction.add(R.id.content_layout, jiaoshi_baoxiufragment);
+                hideFragment(xuesheng_shouyefragement, fragmentTransaction);
+                hideFragment(xuesheng_myframent, fragmentTransaction);
+                if (xuesheng_baoxiufragment == null) {
+                   xuesheng_baoxiufragment = new xuesheng_baoxiufragment();
+                    fragmentTransaction.add(R.id.xuesheng_content_layout, xuesheng_baoxiufragment);
                 } else {
-                    mCurrent = jiaoshi_baoxiufragment;
-                    fragmentTransaction.show(jiaoshi_baoxiufragment);
+                    mCurrent = xuesheng_baoxiufragment;
+                    fragmentTransaction.show(xuesheng_baoxiufragment);
                 }
                 break;
             case 2:
@@ -142,14 +138,14 @@ public class index_jiaoshiActivity extends AppCompatActivity implements View.OnC
                 baoxiu_im.setImageDrawable(getResources().getDrawable(R.drawable.banxiu_2));
                 baoxiu_tv.setTextColor(getResources().getColor(R.color.comui_tab));
                 hideFragment(mCommonFragmentOne, fragmentTransaction);
-                hideFragment(jiaoshi_shouyefragement, fragmentTransaction);
-                hideFragment(jiaoshi_baoxiufragment, fragmentTransaction);
-                if (jiaoshi_myframent == null) {
-                    jiaoshi_myframent = new jiaoshi_myfragment();
-                    fragmentTransaction.add(R.id.content_layout, jiaoshi_myframent);
+                hideFragment(xuesheng_shouyefragement, fragmentTransaction);
+                hideFragment(xuesheng_baoxiufragment, fragmentTransaction);
+                if (xuesheng_myframent == null) {
+                    xuesheng_myframent = new xuesheng_myfragment();
+                    fragmentTransaction.add(R.id.xuesheng_content_layout, xuesheng_myframent);
                 } else {
-                    mCurrent = jiaoshi_myframent;
-                    fragmentTransaction.show(jiaoshi_myframent);
+                    mCurrent = xuesheng_myframent;
+                    fragmentTransaction.show(xuesheng_myframent);
                 }
                 break;
             default:

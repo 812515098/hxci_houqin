@@ -1,4 +1,4 @@
-package Fragemnt1;
+package jiaoshi_Fragment;
 
 
 
@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
 
-public class myfragment extends BaseFragment {
+public class jiaoshi_myfragment extends jiaoshi_BaseFragment {
     private View mContentView;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class myfragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContext = getActivity();
-       mContentView= inflater.inflate(R.layout.myfragment,container,false);
+       mContentView= inflater.inflate(R.layout.jiaoshi_myfragment,container,false);
         return mContentView;
     }
  /*   *//*  @Override
@@ -68,10 +68,10 @@ public class myfragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    public static myfragment newInstance(String title) {
+    public static jiaoshi_myfragment newInstance(String title) {
         Bundle bundle = new Bundle();
         bundle.putString(BUNDLE_TITLE, title);
-        myfragment fragment = new myfragment();
+        jiaoshi_myfragment fragment = new jiaoshi_myfragment();
         fragment.setArguments(bundle);
         return fragment;
     }

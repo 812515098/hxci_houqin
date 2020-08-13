@@ -1,38 +1,34 @@
 package com.example.myapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import weixiurenyuan_Fragment.weixiurenyuan_baoxiufragment;
+import weixiurenyuan_Fragment.weixiurenyuan_myfragment;
+import weixiurenyuan_Fragment.weixiurenyuan_shouyefragement;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import jiaoshi_Fragment.jiaoshi_baoxiufragment;
-import jiaoshi_Fragment.jiaoshi_myfragment;
-import jiaoshi_Fragment.jiaoshi_shouyefragement;
-
-
-public class index_jiaoshiActivity extends AppCompatActivity implements View.OnClickListener {
-    public static index_jiaoshiActivity instance;
+public class index_weixiurenyuanActivity extends AppCompatActivity implements View.OnClickListener {
     private FragmentManager fm;
     private Fragment mCommonFragmentOne;
-    private jiaoshi_myfragment jiaoshi_myframent;
-    private jiaoshi_baoxiufragment jiaoshi_baoxiufragment;
-    private jiaoshi_shouyefragement jiaoshi_shouyefragement;
+    private weixiurenyuan_myfragment weixiurenyuan_myframent;
+    private weixiurenyuan_Fragment.weixiurenyuan_baoxiufragment weixiurenyuan_baoxiufragment;
+    private weixiurenyuan_Fragment.weixiurenyuan_shouyefragement weixiurenyuan_shouyefragement;
     private Fragment mCurrent;
     private RelativeLayout shouye_Relat,baoxiu_Relat,my_relat;
     private ImageView shouye_im,baoxiu_im,my_im;
     private TextView shouye_tv,baoxiu_tv,my_tv;
     private long exitTime = 0;
-
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.index_jiaoshi);
+        setContentView(R.layout.activity_index_weixiurenyuan);
         initView();
 
     }
@@ -43,25 +39,24 @@ public class index_jiaoshiActivity extends AppCompatActivity implements View.OnC
 
     protected void initView() {
 
-        shouye_Relat = findViewById(R.id.shouye_Relat);
+        shouye_Relat = findViewById(R.id.weixiurenyuan_shouye_Relat);
         shouye_Relat.setOnClickListener(this);
-        baoxiu_Relat =  findViewById(R.id.baoxiu_relat);
+        baoxiu_Relat =  findViewById(R.id.weixiurenyuan_baoxiu_relat);
         baoxiu_Relat.setOnClickListener(this);
-        my_relat = findViewById(R.id.my_relat);
+        my_relat = findViewById(R.id.weixiurenyuan_my_relat);
         my_relat.setOnClickListener(this);
-
-        shouye_im = findViewById(R.id.shouye_im);
-        shouye_tv = findViewById(R.id.shouye_textview);
-        baoxiu_im = findViewById(R.id.baoxiuim);
-        baoxiu_tv = findViewById(R.id.baoxiutv);
-        my_im = findViewById(R.id.my_im);
-        my_tv =  findViewById(R.id.mine_tv);
+        shouye_im = findViewById(R.id.weixiurenyuan_shouye_im);
+        shouye_tv = findViewById(R.id.weixiurenyuan_shouye_textview);
+        baoxiu_im = findViewById(R.id.weixiurenyuan_baoxiuim);
+        baoxiu_tv = findViewById(R.id.weixiurenyuan_baoxiutv);
+        my_im = findViewById(R.id.weixiurenyuan_my_im);
+        my_tv =  findViewById(R.id.weixiurenyuan_mine_tv);
         shouye_im.setImageDrawable(getResources().getDrawable(R.drawable.shouye));
         shouye_tv.setTextColor(getResources().getColor(R.color.comui_tab_selected));
-        jiaoshi_shouyefragement = new jiaoshi_shouyefragement();
+        weixiurenyuan_shouyefragement = new weixiurenyuan_shouyefragement();
         fm = this.getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.content_layout, jiaoshi_shouyefragement);
+        fragmentTransaction.replace(R.id.weixiurenyuan_content_layout, weixiurenyuan_shouyefragement);
         fragmentTransaction.commit();
     }
 
@@ -80,13 +75,13 @@ public class index_jiaoshiActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.shouye_Relat:
+            case R.id.weixiurenyuan_shouye_Relat:
                 labelSelection(0);
                 break;
-            case R.id.baoxiu_relat:
+            case R.id.weixiurenyuan_baoxiu_relat:
                 labelSelection(1);
                 break;
-            case R.id.my_relat:
+            case R.id.weixiurenyuan_my_relat:
                 labelSelection(2);
                 break;
             default:
@@ -106,14 +101,14 @@ public class index_jiaoshiActivity extends AppCompatActivity implements View.OnC
                 my_im.setImageDrawable(getResources().getDrawable(R.drawable.my_2));
                 my_tv.setTextColor(getResources().getColor(R.color.comui_tab));
                 hideFragment(mCommonFragmentOne, fragmentTransaction);
-                hideFragment(jiaoshi_baoxiufragment, fragmentTransaction);
-                hideFragment(jiaoshi_myframent, fragmentTransaction);
-                if (jiaoshi_shouyefragement == null) {
-                    jiaoshi_shouyefragement = new jiaoshi_shouyefragement();
-                    fragmentTransaction.add(R.id.content_layout, jiaoshi_shouyefragement);
+                hideFragment(weixiurenyuan_baoxiufragment, fragmentTransaction);
+                hideFragment(weixiurenyuan_myframent, fragmentTransaction);
+                if (weixiurenyuan_shouyefragement == null) {
+                    weixiurenyuan_shouyefragement = new weixiurenyuan_shouyefragement();
+                    fragmentTransaction.add(R.id.weixiurenyuan_content_layout, weixiurenyuan_shouyefragement);
                 } else {
-                    mCurrent = jiaoshi_shouyefragement;
-                    fragmentTransaction.show(jiaoshi_shouyefragement);
+                    mCurrent = weixiurenyuan_shouyefragement;
+                    fragmentTransaction.show(weixiurenyuan_shouyefragement);
                 }
                 break;
             case 1:
@@ -124,14 +119,14 @@ public class index_jiaoshiActivity extends AppCompatActivity implements View.OnC
                 my_im.setImageDrawable(getResources().getDrawable(R.drawable.my_2));
                 my_tv.setTextColor(getResources().getColor(R.color.comui_tab));
                 hideFragment(mCommonFragmentOne, fragmentTransaction);
-                hideFragment(jiaoshi_shouyefragement, fragmentTransaction);
-                hideFragment(jiaoshi_myframent, fragmentTransaction);
-                if (jiaoshi_baoxiufragment == null) {
-                    jiaoshi_baoxiufragment = new jiaoshi_baoxiufragment();
-                    fragmentTransaction.add(R.id.content_layout, jiaoshi_baoxiufragment);
+                hideFragment(weixiurenyuan_shouyefragement, fragmentTransaction);
+                hideFragment(weixiurenyuan_myframent, fragmentTransaction);
+                if (weixiurenyuan_baoxiufragment == null) {
+                    weixiurenyuan_baoxiufragment = new weixiurenyuan_baoxiufragment();
+                    fragmentTransaction.add(R.id.weixiurenyuan_content_layout, weixiurenyuan_baoxiufragment);
                 } else {
-                    mCurrent = jiaoshi_baoxiufragment;
-                    fragmentTransaction.show(jiaoshi_baoxiufragment);
+                    mCurrent = weixiurenyuan_baoxiufragment;
+                    fragmentTransaction.show(weixiurenyuan_baoxiufragment);
                 }
                 break;
             case 2:
@@ -142,14 +137,14 @@ public class index_jiaoshiActivity extends AppCompatActivity implements View.OnC
                 baoxiu_im.setImageDrawable(getResources().getDrawable(R.drawable.banxiu_2));
                 baoxiu_tv.setTextColor(getResources().getColor(R.color.comui_tab));
                 hideFragment(mCommonFragmentOne, fragmentTransaction);
-                hideFragment(jiaoshi_shouyefragement, fragmentTransaction);
-                hideFragment(jiaoshi_baoxiufragment, fragmentTransaction);
-                if (jiaoshi_myframent == null) {
-                    jiaoshi_myframent = new jiaoshi_myfragment();
-                    fragmentTransaction.add(R.id.content_layout, jiaoshi_myframent);
+                hideFragment(weixiurenyuan_shouyefragement, fragmentTransaction);
+                hideFragment(weixiurenyuan_baoxiufragment, fragmentTransaction);
+                if (weixiurenyuan_myframent == null) {
+                    weixiurenyuan_myframent = new weixiurenyuan_myfragment();
+                    fragmentTransaction.add(R.id.weixiurenyuan_content_layout,weixiurenyuan_myframent);
                 } else {
-                    mCurrent = jiaoshi_myframent;
-                    fragmentTransaction.show(jiaoshi_myframent);
+                    mCurrent = weixiurenyuan_myframent;
+                    fragmentTransaction.show(weixiurenyuan_myframent);
                 }
                 break;
             default:

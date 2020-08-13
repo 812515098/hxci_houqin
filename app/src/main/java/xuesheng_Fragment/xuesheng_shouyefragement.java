@@ -1,6 +1,5 @@
-package Fragemnt1;
+package xuesheng_Fragment;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,10 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
 import com.example.myapplication.baoxiumesaageActivity;
@@ -21,7 +16,11 @@ import com.example.myapplication.tongzhiActivity;
 
 import java.util.ArrayList;
 
-public class shouyefragement extends BaseFragment  {
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import jiaoshi_Fragment.jiaoshi_BaseFragment;
+
+public class xuesheng_shouyefragement extends xuesheng_BaseFragment {
     private View mContentView;
     private RelativeLayout baoxiu_IBRe;
 
@@ -36,9 +35,9 @@ public class shouyefragement extends BaseFragment  {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContext = getActivity();
-         mContentView=inflater.inflate(R.layout.shouyefragment,container,false);
-        messagelv= mContentView.findViewById(R.id.messagelv);
-        baoxiu_IBRe=  mContentView.findViewById(R.id.baoxiu_IBRe);
+         mContentView=inflater.inflate(R.layout.xuesheng_shouyefragment,container,false);
+        messagelv= mContentView.findViewById(R.id.xuesheng_messagelv);
+        baoxiu_IBRe=  mContentView.findViewById(R.id.xuesheng_baoxiu_IBRe);
         myadapter=new ArrayAdapter<String>(mContext,android.R.layout.simple_list_item_1,list());
         messagelv.setAdapter(myadapter);
         messagelv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
