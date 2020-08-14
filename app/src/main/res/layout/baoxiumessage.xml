@@ -3,17 +3,42 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
-<TextView
-    android:id="@+id/baoxiu_title"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:drawableLeft="@drawable/tongzhi"
-    android:layout_marginTop="50dp"
-    android:layout_marginLeft="15dp"
-    android:textSize="20sp"
-    android:textColor="@color/black"
-    android:text="@string/baoxiu_mess"
-    />
+
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/jianbian_bg">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:src="@drawable/path" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            android:text="报修信息"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </Toolbar>
+
+    <TextView
+        android:id="@+id/baoxiu_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/tongzhi"
+        android:text="@string/baoxiu_mess"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+    <ListView
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"/>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
