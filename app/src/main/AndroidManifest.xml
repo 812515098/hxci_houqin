@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".zhanghaoshezhiActivity"></activity>
+        <activity android:name=".gongzuoxiangqingActivity"></activity>
+        <activity android:name=".zhanghaoshezhiActivity" />
         <activity android:name=".index_guanliyuanActivity" />
         <activity android:name=".index_weixiurenyuanActivity" />
         <activity android:name=".index_xueshengActivity" />
@@ -23,14 +24,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingActivity"
-            android:label="@string/setting" />
+            android:name=".SettingActivity" />
         <activity
-            android:name=".index_jiaoshiActivity"
-            android:label="@string/jiaoshi_login" />
+            android:name=".index_jiaoshiActivity" />
         <activity
-            android:name=".tongzhiActivity"
-            android:label="@string/tongzhi" />
+            android:name=".tongzhiActivity" />
         <activity
             android:name=".baoxiumesaageActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
