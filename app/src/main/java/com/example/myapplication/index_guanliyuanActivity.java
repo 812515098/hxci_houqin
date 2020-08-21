@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
 import guanliyuan_Fragment.guanliyuan_baoxiufragment;
 import guanliyuan_Fragment.guanliyuan_myfragment;
 import guanliyuan_Fragment.guanliyuan_shouyefragement;
@@ -18,7 +19,7 @@ public class index_guanliyuanActivity extends AppCompatActivity implements View.
     private FragmentManager fm;
     private Fragment mCommonFragmentOne;
     private guanliyuan_myfragment guanliyuan_myframent;
-    private guanliyuan_baoxiufragment guanliyuan_baoxiufragment;
+    private guanliyuan_Fragment.guanliyuan_baoxiufragment guanliyuan_baoxiufragment;
     private guanliyuan_shouyefragement guanliyuan_shouyefragement;
     private Fragment mCurrent;
     private RelativeLayout shouye_Relat,baoxiu_Relat,my_relat;
