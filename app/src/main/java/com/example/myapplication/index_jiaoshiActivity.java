@@ -49,13 +49,13 @@ public class index_jiaoshiActivity extends AppCompatActivity implements View.OnC
         baoxiu_Relat.setOnClickListener(this);
         my_relat = findViewById(R.id.my_relat);
         my_relat.setOnClickListener(this);
-
         shouye_im = findViewById(R.id.shouye_im);
         shouye_tv = findViewById(R.id.shouye_textview);
         baoxiu_im = findViewById(R.id.baoxiuim);
         baoxiu_tv = findViewById(R.id.baoxiutv);
         my_im = findViewById(R.id.my_im);
         my_tv =  findViewById(R.id.mine_tv);
+
         shouye_im.setImageDrawable(getResources().getDrawable(R.drawable.shouye));
         shouye_tv.setTextColor(getResources().getColor(R.color.comui_tab_selected));
         jiaoshi_shouyefragement = new jiaoshi_shouyefragement();

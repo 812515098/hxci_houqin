@@ -25,6 +25,7 @@ public class guanliyuan_myfragment extends guanliyuan_BaseFragment {
         mContext = getActivity();
        mContentView= inflater.inflate(R.layout.guanliyuan_myfragment,container,false);
         return mContentView;
+
     }
  /*   *//*  @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
