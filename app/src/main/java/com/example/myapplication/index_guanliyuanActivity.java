@@ -11,6 +11,7 @@ import guanliyuan_Fragment.guanliyuan_shouyefragement;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
