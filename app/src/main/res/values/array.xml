@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="xiaoqu">
+        <item>校区</item>
+        <item>哈东校区</item>
+        <item>江北校区</item>
+
+    </string-array>
+     <string-array name="jiaoxuelou">
+         <item>教学楼</item>
+         <item>教学楼A座</item>
+         <item>教学楼B座</item>
+         <item>教学楼C座</item>
+         <item>学生公寓1号楼</item>
+         <item>学生公寓2号楼</item>
+         <item>学生公寓3号楼</item>
+         <item>学生公寓4号楼</item>
+         <item>学生公寓5号楼</item>
+     </string-array>
+    <string-array name="bx_fenlei">
+        <item>分类</item>
+        <item>弱电类</item>
+        <item>强电类</item>
+        <item>水暖类</item>
+    </string-array>
+    <string-array name="bx_conten">
+        <item>报修内容</item>
+        <item>寝室灯不亮</item>
+        <item>电暖气脱落</item>
+        <item>卫生间灯不亮</item>
+    </string-array>
+    <string-array name="bx_dengji">
+        <item>维修等级</item>
+        <item>普通</item>
+        <item>加急</item>
+    </string-array>
+</resources>
