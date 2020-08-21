@@ -8,27 +8,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".gongzuoxiangqingActivity"></activity>
-        <activity android:name=".zhanghaoshezhiActivity" />
-        <activity android:name=".index_guanliyuanActivity" />
-        <activity android:name=".index_weixiurenyuanActivity" />
-        <activity android:name=".index_xueshengActivity" />
-        <activity
-            android:name=".loginActivity"
-            android:theme="@style/login">
+        android:theme="@style/App">
+
+        <activity android:name=".xinxichaxunActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".gongzuoxiangqingActivity" />
+        <activity android:name=".zhanghaoshezhiActivity" />
+        <activity android:name=".index_guanliyuanActivity" />
+        <activity android:name=".index_weixiurenyuanActivity" />
+        <activity android:name=".index_xueshengActivity" />
         <activity
-            android:name=".SettingActivity" />
-        <activity
-            android:name=".index_jiaoshiActivity" />
-        <activity
-            android:name=".tongzhiActivity" />
+            android:name=".loginActivity"
+            android:theme="@style/login"></activity>
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".index_jiaoshiActivity" />
+        <activity android:name=".tongzhiActivity" />
         <activity
             android:name=".baoxiumesaageActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

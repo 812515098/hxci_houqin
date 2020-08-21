@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="#FFFFFF"
+android:orientation="vertical" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#FFFFFF"
+        />
+<RelativeLayout
+    android:id="@+id/xinxichaxun_bg"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/xinxichaxun_itemIcon"
+        android:layout_marginLeft="20dp"
+        android:layout_width="25dip"
+        android:layout_height="25dip"
+        android:layout_centerVertical="true"
+
+        android:src="@drawable/iphone" />
+
+    <TextView
+        android:id="@+id/xinxichaxun_item_xingming"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/xinxichaxun_itemIcon"
+        android:layout_centerVertical="true"
+        android:text="111"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:gravity="right"
+        android:id="@+id/xinxichaxun_item_zhuangtiai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:text="18764664738"
+        android:textColor="@color/black"
+        />
+</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#FFFFFF"
+        />
+
+</LinearLayout>
