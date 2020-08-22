@@ -92,7 +92,7 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:scaleType="centerInside"
-            android:src="@drawable/denglu_yj" />
+            android:src="@drawable/denglu_yc" />
     </RelativeLayout>
 
     <TextView
