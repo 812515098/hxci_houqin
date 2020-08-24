@@ -113,15 +113,15 @@
         android:layout_weight="3"
         android:orientation="vertical"
         android:background="@drawable/buju_shape">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/tongzhi"
             android:text="信息发布"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            />
+            android:textSize="19sp"
+            android:textStyle="bold" />
         <ListView
             android:id="@+id/messagelv"
             android:layout_width="match_parent"

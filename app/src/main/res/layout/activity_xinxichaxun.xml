@@ -21,6 +21,7 @@
          >
 
             <ImageView
+                android:id="@+id/xinxichaxun_bk"
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:src="@drawable/path" />

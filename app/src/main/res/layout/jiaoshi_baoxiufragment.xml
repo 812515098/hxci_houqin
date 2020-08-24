@@ -1,175 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/xuesheng_img_yonghu_boottom"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/baoxiu_bgg"
-    >
-    <LinearLayout
+    android:background="@drawable/baoxiu_bgg">
+    <Toolbar
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/line1"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:src="@drawable/path" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:singleLine="true"
+            android:text="报修申请"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </Toolbar>
+    <RelativeLayout
+        android:id="@+id/jiaoshi_img_yonghu_top"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="0dp">
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/jiaoshi_img_yonghu_top"
+        android:layout_alignStart="@+id/jiaoshi_img_yonghu_top"
+        android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_weight="3"
+        android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/buju_shape"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_marginTop="0dp"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:background="@drawable/baoxiu_bgtu"
-            android:scaleType="fitXY" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            >
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/baoxiu_bggj"
                     android:scaleType="fitXY"
-                    android:background="@drawable/baoxiu_bggj">
+                    android:layout_gravity="center_vertical">
+
 
                 </ImageView>
+
                 <TextView
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
+                    android:text="曾欣的报修"
                     android:textColor="#302E2E"
-                    android:text="曾鑫的报修"
-                    />
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/baoxiu_ad"
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal"
 
                 >
+
                 <Spinner
-                    android:id="@+id/xiaoqu"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/jiaoshi_xiaoqu"
                     android:layout_width="110dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
+                    android:layout_weight="1"
                     android:background="@drawable/edittongming"
 
-                    android:entries="@array/xiaoqu"
-                    />
+                    android:entries="@array/xiaoqu" />
+
                 <Spinner
-                    android:id="@+id/jiaoxuelou"
-                    android:layout_weight="1"
+                    android:id="@+id/jiaoshi_jiaoxuelou"
                     android:layout_width="110dp"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/edittongming"
                     android:layout_height="wrap_content"
-                    android:entries="@array/jiaoxuelou"
-                    />
-                <EditText
+                    android:layout_marginRight="5dp"
                     android:layout_weight="1"
+                    android:background="@drawable/edittongming"
+                    android:entries="@array/jiaoxuelou" />
+
+                <EditText
+                    android:id="@+id/jiaoshi_lianxifangshi"
                     android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittongming"
                     android:gravity="center"
-                    android:textSize="12dp"
                     android:hint="联系方式（必填）"
                     android:singleLine="true"
-                    android:background="@drawable/edittongming"
-                    android:layout_height="match_parent"></EditText>
+                    android:textSize="12dp"></EditText>
             </LinearLayout>
+
             <EditText
-                android:id="@+id/baoxiudizhi"
+                android:id="@+id/jiaoshi_baoxiudizhi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+
                 android:background="@drawable/edittongming"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="15dp"
                 android:hint="详细地址门牌号（必填）"
-                android:singleLine="true"
-                />
+                android:singleLine="true" />
+
             <LinearLayout
-                android:id="@+id/baoxiu_fenlei"
-                android:layout_marginTop="10dp"
+                android:id="@+id/jiaoshi_baoxiu_fenlei"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal"
 
                 >
-                <Spinner
-                    android:id="@+id/bx_fenlei"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_width="110dp"
-                    android:layout_marginRight="8dp"
-                    android:background="@drawable/edittongming"
-                    android:entries="@array/bx_fenlei"
-                    />
-                <Spinner
-                    android:id="@+id/bx_content"
-                    android:layout_weight="1"
-                    android:layout_width="110dp"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/edittongming"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/bx_conten"
-                    />
-                <Spinner
-                    android:id="@+id/bx_dengji"
-                    android:layout_weight="1"
-                    android:layout_width="110dp"
 
-                    android:background="@drawable/edittongming"
+                <Spinner
+                    android:id="@+id/jiaoshi_bx_fenlei"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/bx_dengji"
-                    />
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittongming"
+                    android:entries="@array/bx_fenlei" />
+
+                <Spinner
+                    android:id="@+id/jiaoshi_bx_content"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittongming"
+                    android:entries="@array/bx_conten" />
+
+                <Spinner
+                    android:id="@+id/jiaoshi_bx_dengji"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittongming"
+                    android:entries="@array/bx_dengji" />
             </LinearLayout>
+
             <EditText
-                android:id="@+id/bx_xiangqing"
+                android:id="@+id/jiaoshi_bx_xiangqing"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="@drawable/edittongming"
-                android:layout_marginTop="10dp"
-                android:textSize="12dp"
-                android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/edittongming"
+                android:ellipsize="end"
                 android:hint="填写故障详细说明"
                 android:maxLines="5"
-                android:ellipsize="end"
                 android:paddingLeft="3dp"
-                />
+                android:textSize="12dp" />
+
             <Button
-                android:id="@+id/baoxiu_tijiao"
+                android:id="@+id/jiaoshi_baoxiu_tijiao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_gravity="center"
-                android:text="确定"
-                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/button_denglu"
-                />
-
-
+                android:text="确定"
+                android:textColor="@color/white" />
 
 
         </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="130dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/baoxiu_bgtu"></ImageView>
+</RelativeLayout>

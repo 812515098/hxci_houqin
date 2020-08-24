@@ -7,12 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.example.myapplication.Bean.XinxichaxunBean;
 import com.example.myapplication.R;
 import com.example.myapplication.baoxiumesaageActivity;
 import com.example.myapplication.tongzhiActivity;
+import com.example.myapplication.xinxichaxunActivity;
 
 import java.util.ArrayList;
 
@@ -22,8 +26,7 @@ import jiaoshi_Fragment.jiaoshi_BaseFragment;
 
 public class xuesheng_shouyefragement extends xuesheng_BaseFragment {
     private View mContentView;
-    private RelativeLayout baoxiu_IBRe;
-
+    private ImageButton xuesheng_baoxiu_IB,xuesheng_chaxun_IB;
     ListView messagelv;
     ArrayList data ;
     ArrayAdapter<String> myadapter;
@@ -37,9 +40,17 @@ public class xuesheng_shouyefragement extends xuesheng_BaseFragment {
         mContext = getActivity();
          mContentView=inflater.inflate(R.layout.xuesheng_shouyefragment,container,false);
         messagelv= mContentView.findViewById(R.id.xuesheng_messagelv);
-        baoxiu_IBRe=  mContentView.findViewById(R.id.xuesheng_baoxiu_IBRe);
+        xuesheng_chaxun_IB=  mContentView.findViewById(R.id.xuesheng_chaxun_IB);
+        xuesheng_baoxiu_IB=mContentView.findViewById(R.id.xuesheng_baoxiu_IB);
         myadapter=new ArrayAdapter<String>(mContext,android.R.layout.simple_list_item_1,list());
         messagelv.setAdapter(myadapter);
+        xuesheng_chaxun_IB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), xinxichaxunActivity.class);
+                startActivity(intent);
+            }
+        });
         messagelv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             /*
@@ -54,7 +65,7 @@ public class xuesheng_shouyefragement extends xuesheng_BaseFragment {
                 //Toast.makeText(getActivity(),"aaa",Toast.LENGTH_SHORT).show();
             }
         });
-        baoxiu_IBRe.setOnClickListener(new View.OnClickListener() {
+        xuesheng_baoxiu_IB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), baoxiumesaageActivity.class);

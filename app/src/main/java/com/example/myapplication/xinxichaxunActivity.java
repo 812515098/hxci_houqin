@@ -19,7 +19,7 @@ public class xinxichaxunActivity extends AppCompatActivity implements View.OnCli
     private List<XinxichaxunBean> xinxichaxunBeans = new ArrayList<>();
     private List<XinxichaxunBean> xinxichaxunBeans2 = new ArrayList<>();
     private List<XinxichaxunBean> xinxichaxunBeans3 = new ArrayList<>();
-    private ImageView duanhua,bangong,banche,tuxiang;
+    private ImageView duanhua,bangong,banche,tuxiang,bk;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +32,9 @@ public class xinxichaxunActivity extends AppCompatActivity implements View.OnCli
         bangong=findViewById(R.id.xinxichaxun_bangong);
         banche=findViewById(R.id.xinxichaxun_banche);
         tuxiang=findViewById(R.id.xinxichaxun_img);
+        bk=findViewById(R.id.xinxichaxun_bk);
         tuxiang.setBackgroundResource(R.drawable.dianhua_1);
+        bk.setOnClickListener(this);
         duanhua.setOnClickListener(this);
         bangong.setOnClickListener(this);
         banche.setOnClickListener(this);
@@ -77,6 +79,9 @@ public class xinxichaxunActivity extends AppCompatActivity implements View.OnCli
                 tuxiang.setBackgroundResource(R.drawable.banche_3);
                 ListView listView3 =  findViewById(R.id.xinxichaxun_Listview);
                 listView3.setAdapter(null);
+                break;
+            case R.id.xinxichaxun_bk:
+                finish();
                 break;
         }
     }

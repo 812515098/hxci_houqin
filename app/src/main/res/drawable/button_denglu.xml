@@ -6,6 +6,12 @@
     <solid android:color="#2196F3" />
     <!--设置圆角-->
     <corners android:radius="105dip" />
+    <!--渐变-->
+    <gradient
+        android:startColor="#1473BD"
+        android:endColor="#7CC8EB"
+        android:angle="0"
+        />
     <padding
         android:bottom="12dp"
         android:left="63dp"

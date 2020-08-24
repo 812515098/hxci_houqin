@@ -14,7 +14,7 @@ import com.example.myapplication.R;
 import java.util.List;
 
 public class gongzuoxiangqiangqing_Adapter extends BaseAdapter {
-    private List<XinXiBean> list;
+  private List<XinXiBean> list;
     public Context context;
     public gongzuoxiangqiangqing_Adapter(Context context, List<XinXiBean> list){
         this.context=context;

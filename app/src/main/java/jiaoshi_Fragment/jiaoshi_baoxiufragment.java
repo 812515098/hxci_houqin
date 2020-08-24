@@ -24,7 +24,7 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment  implements Vie
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContext = getActivity();
         mContentView= inflater.inflate(R.layout.jiaoshi_baoxiufragment,container,false);
-        baoxiu_tijiao=  mContentView.findViewById(R.id.baoxiu_tijiao);
+        baoxiu_tijiao=  mContentView.findViewById(R.id.jiaoshi_baoxiu_tijiao);
         baoxiu_tijiao.setOnClickListener(this);
 
         return mContentView;
@@ -35,7 +35,7 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment  implements Vie
     public void onClick(View v) {
         switch (v.getId()){
 
-            case R.id.baoxiu_tijiao:
+            case R.id.jiaoshi_baoxiu_tijiao:
                     AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
                     builder.setIcon(R.drawable.yiwancheng).setMessage("你确定提交报修吗？");
                     builder.setPositiveButton("确定",null);
