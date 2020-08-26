@@ -61,7 +61,7 @@
                 android:layout_below="@+id/guanliyuan_baoxiuim"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="3dp"
-                android:text="报修申请"
+                android:text="报修信息"
                 android:textColor="#85857E"
                 android:textSize="13sp" />
         </RelativeLayout>

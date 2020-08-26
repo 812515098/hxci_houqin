@@ -85,6 +85,7 @@ public class tiaowenshengqingActivity extends AppCompatActivity implements View.
                     }
                 });
                 selfDialog.show();
+                selfDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 break;
         }
 
@@ -93,13 +94,11 @@ public class tiaowenshengqingActivity extends AppCompatActivity implements View.
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             View view = View.inflate(this, R.layout.date_time_dialog, null);
             final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
             final TimePicker timePicker = (android.widget.TimePicker) view.findViewById(R.id.time_picker);
             builder.setView(view);
-
             Calendar cal = Calendar.getInstance();
             cal.setTimeInMillis(System.currentTimeMillis());
             datePicker.init(cal.get(Calendar.YEAR),
