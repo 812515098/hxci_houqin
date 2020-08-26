@@ -60,13 +60,13 @@ public class xuesheng_baoxiufragment extends xuesheng_BaseFragment implements xu
         imagePicker.setOutPutY(50);                         //保存文件的高度。单位像素
     }
     private void initWidget() {
-        RecyclerView recyclerView = mContentView.findViewById(R.id.xuesheng_recyclerView);
+     //   RecyclerView recyclerView = mContentView.findViewById(R.id.xuesheng_recyclerView);
         selImageList = new ArrayList<>();
         adapter = new xuesheng_ImagePickerAdapter(getContext(), selImageList, maxImgCount);
         adapter.setOnItemClickListener(this);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
+    //    recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
+     //   recyclerView.setHasFixedSize(true);
+     //   recyclerView.setAdapter(adapter);
     }
     private SelectDialog showDialog(SelectDialog.SelectDialogListener listener, List<String> names) {
         SelectDialog dialog = new SelectDialog(getActivity(), R.style.transparentFrameWindowStyle, listener, names);

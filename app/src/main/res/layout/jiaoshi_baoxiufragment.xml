@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/xuesheng_img_yonghu_boottom"
+    android:id="@+id/jiaoshi_img_yonghu_boottom"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -40,10 +40,11 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/jiaoshi_img_yonghu_top"
         android:layout_alignStart="@+id/jiaoshi_img_yonghu_top"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/buju_shape"
         android:orientation="vertical">
 
@@ -55,9 +56,10 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
@@ -81,108 +83,148 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
                 android:orientation="horizontal"
 
                 >
 
-                <Spinner
-                    android:id="@+id/jiaoshi_xiaoqu"
+                <LinearLayout
                     android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
+                    android:layout_height="25dp"
                     android:layout_weight="1"
-                    android:background="@drawable/edittongming"
-
-                    android:entries="@array/xiaoqu" />
-
-                <Spinner
-                    android:id="@+id/jiaoshi_jiaoxuelou"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/edittongming"
-                    android:entries="@array/jiaoxuelou" />
+                    android:background="@drawable/spinner2">
 
-                <EditText
-                    android:id="@+id/jiaoshi_lianxifangshi"
+                    <Spinner
+                        android:id="@+id/jiaoshi_xiaoqu"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:background="@drawable/spinner"
+                        android:entries="@array/xiaoqu" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="110dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="25dp"
                     android:layout_weight="1"
-                    android:background="@drawable/edittongming"
-                    android:gravity="center"
-                    android:hint="联系方式（必填）"
-                    android:singleLine="true"
-                    android:textSize="12dp"></EditText>
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/spinner2">
+
+                    <Spinner
+                        android:id="@+id/jiaoshi_jiaoxuelou"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:background="@drawable/spinner"
+                        android:entries="@array/jiaoxuelou" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="110dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/spinner2">
+
+                    <EditText
+                        android:id="@+id/jiaoshi_lianxifangshi"
+                        style="@style/Editxcolor"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+
+
+                        android:background="@null"
+                        android:hint="联系方式（必填）"
+                        android:singleLine="true"
+                        android:textSize="12dp"></EditText>
+                </LinearLayout>
             </LinearLayout>
-
-            <EditText
-                android:id="@+id/jiaoshi_baoxiudizhi"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_height="25dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
+                android:background="@drawable/spinner2">
+                <EditText
+                    android:id="@+id/jiaoshi_baoxiudizhi"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
 
-                android:background="@drawable/edittongming"
-                android:hint="详细地址门牌号（必填）"
-                android:singleLine="true" />
-
+                    android:background="@null"
+                    android:hint="详细地址门牌号（必填）"
+                    android:singleLine="true"
+                    android:textSize="12dp" />
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/jiaoshi_baoxiu_fenlei"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
                 android:orientation="horizontal"
 
                 >
-
-                <Spinner
-                    android:id="@+id/jiaoshi_bx_fenlei"
+                <LinearLayout
                     android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/edittongming"
-                    android:entries="@array/bx_fenlei" />
-
-                <Spinner
-                    android:id="@+id/jiaoshi_bx_content"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="25dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/edittongming"
-                    android:entries="@array/bx_conten" />
-
-                <Spinner
-                    android:id="@+id/jiaoshi_bx_dengji"
+                    android:background="@drawable/spinner2">
+                    <Spinner
+                        android:id="@+id/jiaoshi_bx_fenlei"
+                        android:layout_width="110dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/spinner"
+                        android:entries="@array/bx_fenlei" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="110dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/edittongming"
-                    android:entries="@array/bx_dengji" />
+                    android:background="@drawable/spinner2">
+                    <Spinner
+                        android:id="@+id/jiaoshi_bx_content"
+                        android:layout_width="110dp"
+                        android:layout_height="25dp"
+
+                        android:layout_weight="1"
+                        android:background="@drawable/spinner"
+                        android:entries="@array/bx_conten" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="110dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/spinner2">
+                    <Spinner
+                        android:id="@+id/jiaoshi_bx_dengji"
+                        android:layout_width="110dp"
+                        android:layout_height="25dp"
+
+                        android:layout_weight="1"
+                        android:background="@drawable/spinner"
+                        android:entries="@array/bx_dengji" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/spinner2">
+                <EditText
+                    android:id="@+id/jiaoshi_bx_xiangqing"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:hint="填写故障详细说明"
+                    android:maxLines="5"
+                    android:textSize="12dp" />
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/jiaoshi_bx_xiangqing"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/edittongming"
-                android:ellipsize="end"
-                android:hint="填写故障详细说明"
-                android:maxLines="5"
-                android:paddingLeft="3dp"
-                android:textSize="12dp" />
-
+            <ImageView
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:paddingTop="10dp"
+                android:src="@drawable/zhaoxiang_bg"/>
             <Button
                 android:id="@+id/jiaoshi_baoxiu_tijiao"
                 android:layout_width="wrap_content"
@@ -192,8 +234,6 @@
                 android:background="@drawable/button_denglu"
                 android:text="确定"
                 android:textColor="@color/white" />
-
-
         </LinearLayout>
 
     </RelativeLayout>

@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_SETTINGSS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,10 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/App">
+        <activity android:name=".tiaowenshengqingActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".xinxichaxunActivity">
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity android:name=".xinxichaxunActivity"></activity>
         <activity android:name=".gongzuoxiangqingActivity" />
         <activity android:name=".zhanghaoshezhiActivity" />
         <activity android:name=".index_guanliyuanActivity" />
@@ -25,11 +30,7 @@
         <activity
             android:name=".loginActivity"
             android:theme="@style/login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".SettingActivity" />
         <activity android:name=".index_jiaoshiActivity" />
@@ -39,7 +40,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
-            android:theme="@style/ImagePickerThemeFullScreen"/>
+            android:theme="@style/ImagePickerThemeFullScreen" />
     </application>
 
 </manifest>
