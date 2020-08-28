@@ -224,7 +224,6 @@
        android:layout_width="85dp"
        android:layout_height="85dp"
        android:paddingTop="10dp"
-       android:layout_marginLeft="130dp"
        android:src="@drawable/zhaoxiang_bg"/>
             <Button
                 android:id="@+id/xuesheng_baoxiu_tijiao"

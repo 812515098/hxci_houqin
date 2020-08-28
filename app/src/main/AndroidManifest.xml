@@ -15,18 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/App">
         <activity android:name=".tiaowenshengqingActivity">
-
-        </activity>
-        <activity android:name=".xinxichaxunActivity"></activity>
-        <activity android:name=".gongzuoxiangqingActivity" />
-        <activity android:name=".zhanghaoshezhiActivity" />
-        <activity android:name=".index_guanliyuanActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".xinxichaxunActivity"></activity>
+        <activity android:name=".gongzuoxiangqingActivity" />
+        <activity android:name=".zhanghaoshezhiActivity" />
+        <activity android:name=".index_guanliyuanActivity" />
         <activity android:name=".index_weixiurenyuanActivity" />
         <activity android:name=".index_xueshengActivity" />
         <activity
@@ -39,12 +37,10 @@
         <activity android:name=".tongzhiActivity" />
         <activity
             android:name=".baoxiumesaageActivity"
-           />
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
             android:theme="@style/ImagePickerThemeFullScreen" />
-        <activity android:name=".baoxiuxiangqing_activity"/>
-
     </application>
 
 </manifest>
