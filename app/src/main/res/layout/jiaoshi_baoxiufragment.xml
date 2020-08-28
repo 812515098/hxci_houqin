@@ -46,7 +46,7 @@
         android:layout_marginTop="0dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/buju_shape"
-        android:orientation="vertical">
+        >
 
 
         <LinearLayout
@@ -224,6 +224,7 @@
                 android:layout_width="85dp"
                 android:layout_height="85dp"
                 android:paddingTop="10dp"
+                android:layout_gravity="center"
                 android:src="@drawable/zhaoxiang_bg"/>
             <Button
                 android:id="@+id/jiaoshi_baoxiu_tijiao"
@@ -241,7 +242,7 @@
         android:layout_width="150dp"
         android:layout_height="130dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="80dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
         android:src="@drawable/baoxiu_bgtu"></ImageView>
 </RelativeLayout>
