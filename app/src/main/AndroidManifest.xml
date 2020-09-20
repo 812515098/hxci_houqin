@@ -15,11 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/App">
         <activity android:name=".tiaowenshengqingActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".xinxichaxunActivity"></activity>
         <activity android:name=".gongzuoxiangqingActivity" />
@@ -30,7 +25,11 @@
         <activity
             android:name=".loginActivity"
             android:theme="@style/login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".SettingActivity" />
         <activity android:name=".index_jiaoshiActivity" />

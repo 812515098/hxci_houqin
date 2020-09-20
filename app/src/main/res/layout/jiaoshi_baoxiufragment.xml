@@ -218,13 +218,23 @@
                     android:hint="填写故障详细说明"
                     android:maxLines="5"
                     android:textSize="12dp" />
+
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="85dp"
-                android:layout_height="85dp"
-                android:paddingTop="10dp"
-                android:src="@drawable/zhaoxiang_bg"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:paddingTop="5dp"
+                android:id="@+id/jiaoshi_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:listSelector="@android:color/transparent"
+                android:scrollbarStyle="outsideOverlay"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="4"
+                tools:listitem="@layout/list_item_image" />
+
             <Button
                 android:id="@+id/jiaoshi_baoxiu_tijiao"
                 android:layout_width="wrap_content"

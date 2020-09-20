@@ -7,10 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
-import com.example.myapplication.Adapter.xuesheng_ImagePickerAdapter;
+import com.example.myapplication.Adapter.ImagePickerAdapter;
 import com.example.myapplication.GlideImageLoader;
 import com.example.myapplication.R;
 import com.example.myapplication.SelectDialog;
+import com.isseiaoki.simplecropview.FreeCropImageView;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
@@ -25,12 +26,12 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class xuesheng_baoxiufragment extends xuesheng_BaseFragment implements xuesheng_ImagePickerAdapter.OnRecyclerViewItemClickListener {
+public class xuesheng_baoxiufragment extends xuesheng_BaseFragment implements ImagePickerAdapter.OnRecyclerViewItemClickListener {
   private View mContentView;
     public static final int IMAGE_ITEM_ADD = -1;
     public static final int REQUEST_CODE_SELECT = 100;
     public static final int REQUEST_CODE_PREVIEW = 101;
-    private xuesheng_ImagePickerAdapter adapter;
+    private ImagePickerAdapter adapter;
     private ArrayList<ImageItem> selImageList; //当前选择的所有图片
     private int maxImgCount = 4;               //允许选择图片最大数
     @Override
@@ -49,24 +50,26 @@ public class xuesheng_baoxiufragment extends xuesheng_BaseFragment implements xu
 
     private void initImagePicker() {
         ImagePicker imagePicker = ImagePicker.getInstance();
+        imagePicker.setMultiMode(false);                      //多选
         imagePicker.setImageLoader(new GlideImageLoader());   //设置图片加载器
-        imagePicker.setShowCamera(false);                      //显示拍照按钮
-        imagePicker.setCrop(false);                            //允许裁剪（单选才有效）
+        imagePicker.setShowCamera(true);                      //显示拍照按钮
+        imagePicker.setCrop(false);                           //允许裁剪（单选才有效）
         imagePicker.setSaveRectangle(true);                   //是否按矩形区域保存
         imagePicker.setSelectLimit(maxImgCount);              //选中数量限制
-        imagePicker.setMultiMode(false);                      //多选
         imagePicker.setStyle(CropImageView.Style.RECTANGLE);  //裁剪框的形状
-        imagePicker.setOutPutX(50);                         //保存文件的宽度。单位像素
-        imagePicker.setOutPutY(50);                         //保存文件的高度。单位像素
+        imagePicker.setFocusWidth(800);                       //裁剪框的宽度。单位像素（圆形自动取宽高最小值）
+        imagePicker.setFocusHeight(800);                      //裁剪框的高度。单位像素（圆形自动取宽高最小值）
+        imagePicker.setOutPutX(1000);                         //保存文件的宽度。单位像素
+        imagePicker.setOutPutY(1000);                         //保存文件的高度。单位像素
     }
     private void initWidget() {
-     //   RecyclerView recyclerView = mContentView.findViewById(R.id.xuesheng_recyclerView);
+        RecyclerView recyclerView = mContentView.findViewById(R.id.xuesheng_recyclerView);
         selImageList = new ArrayList<>();
-        adapter = new xuesheng_ImagePickerAdapter(getContext(), selImageList, maxImgCount);
+        adapter = new ImagePickerAdapter(getContext(), selImageList, maxImgCount);
         adapter.setOnItemClickListener(this);
-    //    recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
-     //   recyclerView.setHasFixedSize(true);
-     //   recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
+      recyclerView.setHasFixedSize(true);
+       recyclerView.setAdapter(adapter);
     }
     private SelectDialog showDialog(SelectDialog.SelectDialogListener listener, List<String> names) {
         SelectDialog dialog = new SelectDialog(getActivity(), R.style.transparentFrameWindowStyle, listener, names);
@@ -90,14 +93,17 @@ public class xuesheng_baoxiufragment extends xuesheng_BaseFragment implements xu
                             case 0: // 直接调起相机
                                 //打开选择,本次允许选择的数量
                                 ImagePicker.getInstance().setSelectLimit(maxImgCount - selImageList.size());
-                                Intent intent = new Intent(getContext(), ImageGridActivity.class);
-                                intent.putExtra(ImageGridActivity.EXTRAS_TAKE_PICKERS,true); // 是否是直接打开相机
+                                ImagePicker.getInstance().setMultiMode(false);
+                                ImagePicker.getInstance().setFreeCrop(true, FreeCropImageView.CropMode.FREE);
+                                Intent intent = new Intent(getActivity(), ImageGridActivity.class);
+                                intent.putExtra(ImageGridActivity.EXTRAS_TAKE_PICKERS, true); // 是否是直接打开相机
                                 startActivityForResult(intent, REQUEST_CODE_SELECT);
                                 break;
                             case 1:
                                 //打开选择,本次允许选择的数量
                                 ImagePicker.getInstance().setSelectLimit(maxImgCount - selImageList.size());
-                                Intent intent1 = new Intent(getContext(), ImageGridActivity.class);
+                                ImagePicker.getInstance().setMultiMode(true);
+                                Intent intent1 = new Intent(getActivity(), ImageGridActivity.class);
                                 startActivityForResult(intent1, REQUEST_CODE_SELECT);
                                 break;
                             default:

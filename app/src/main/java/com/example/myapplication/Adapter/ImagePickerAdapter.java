@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
-import xuesheng_Fragment.xuesheng_baoxiufragment;
 
 /**
  * ================================================
@@ -27,7 +26,7 @@ import xuesheng_Fragment.xuesheng_baoxiufragment;
  * 修订历史：微信图片选择的Adapter, 感谢 ikkong 的提交
  * ================================================
  */
-public class xuesheng_ImagePickerAdapter extends RecyclerView.Adapter<xuesheng_ImagePickerAdapter.SelectedPicViewHolder> {
+public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.SelectedPicViewHolder> {
     private int maxImgCount;
     private Context mContext;
     private List<ImageItem> mData;
@@ -60,7 +59,7 @@ public class xuesheng_ImagePickerAdapter extends RecyclerView.Adapter<xuesheng_I
         else return mData;
     }
 
-    public xuesheng_ImagePickerAdapter(Context mContext, List<ImageItem> data, int maxImgCount) {
+    public ImagePickerAdapter(Context mContext, List<ImageItem> data, int maxImgCount) {
         this.mContext = mContext;
         this.maxImgCount = maxImgCount;
         this.mInflater = LayoutInflater.from(mContext);
@@ -99,7 +98,7 @@ public class xuesheng_ImagePickerAdapter extends RecyclerView.Adapter<xuesheng_I
             ImageItem item = mData.get(position);
             if (isAdded && position == getItemCount() - 1) {
                 iv_img.setImageResource(R.drawable.selector_image_add);
-                clickPosition = xuesheng_baoxiufragment.IMAGE_ITEM_ADD;
+                clickPosition = -1;
             } else {
                 ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, item.path, iv_img, 0, 0);
                 clickPosition = position;
