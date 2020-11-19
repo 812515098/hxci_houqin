@@ -21,7 +21,7 @@ import androidx.annotation.Nullable;
 
 public class weixiurenyuan_shouyefragement extends weixiurenyuan_BaseFragment {
     private View mContentView;
-    private RelativeLayout baoxiu_IBRe;
+  //  private RelativeLayout baoxiu_IBRe;
     ListView messagelv;
     ArrayList data ;
     ArrayAdapter<String> myadapter;
@@ -35,7 +35,7 @@ public class weixiurenyuan_shouyefragement extends weixiurenyuan_BaseFragment {
         mContext = getActivity();
          mContentView=inflater.inflate(R.layout.weixiurenyuan_shouyefragment,container,false);
         messagelv= mContentView.findViewById(R.id.messagelv);
-        baoxiu_IBRe=  mContentView.findViewById(R.id.baoxiu_IBRe);
+  //      baoxiu_IBRe=  mContentView.findViewById(R.id.baoxiu_IBRe);
         myadapter=new ArrayAdapter<String>(mContext,android.R.layout.simple_list_item_1,list());
         messagelv.setAdapter(myadapter);
         messagelv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -52,13 +52,13 @@ public class weixiurenyuan_shouyefragement extends weixiurenyuan_BaseFragment {
                 //Toast.makeText(getActivity(),"aaa",Toast.LENGTH_SHORT).show();
             }
         });
-        baoxiu_IBRe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), baoxiumesaageActivity.class);
-                startActivity(intent);
-            }
-        });
+  //     baoxiu_IBRe.setOnClickListener(new View.OnClickListener() {
+    //        @Override
+    //        public void onClick(View v) {
+  //              Intent intent=new Intent(getActivity(), baoxiumesaageActivity.class);
+ //               startActivity(intent);
+  //          }
+   //     });
         return mContentView;
     }
     public ArrayList list(){

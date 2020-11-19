@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,9 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import xuesheng_Fragment.xuesheng_BaseFragment;
 
 import com.example.myapplication.Adapter.ImagePickerAdapter;
+import com.example.myapplication.Adapter.SelfDialog;
 import com.example.myapplication.GlideImageLoader;
 import com.example.myapplication.R;
 import com.example.myapplication.SelectDialog;
+import com.example.myapplication.tousujianyiActivity;
 import com.isseiaoki.simplecropview.FreeCropImageView;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
@@ -29,11 +32,13 @@ import com.lzy.imagepicker.view.CropImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements ImagePickerAdapter.OnRecyclerViewItemClickListener {
+public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements ImagePickerAdapter.OnRecyclerViewItemClickListener ,View.OnClickListener {
     private View mContentView;
+    private SelfDialog selfDialog;
     public static final int IMAGE_ITEM_ADD = -1;
     public static final int REQUEST_CODE_SELECT = 100;
     public static final int REQUEST_CODE_PREVIEW = 101;
+    private Button tijiao;
     private ImagePickerAdapter adapter;
     private ArrayList<ImageItem> selImageList; //当前选择的所有图片
     private int maxImgCount = 4;               //允许选择图片最大数
@@ -48,6 +53,7 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
         mContentView= inflater.inflate(R.layout.jiaoshi_baoxiufragment,container,false);
         initImagePicker();
         initWidget();
+        tijiao.setOnClickListener(this);
         return mContentView;
     }
 
@@ -66,6 +72,7 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
         imagePicker.setOutPutY(1000);                         //保存文件的高度。单位像素
     }
     private void initWidget() {
+        tijiao=mContentView.findViewById(R.id.jiaoshi_baoxiu_tijiao);
         RecyclerView recyclerView = mContentView.findViewById(R.id.jiaoshi_recyclerView);
         selImageList = new ArrayList<>();
         adapter = new ImagePickerAdapter(getContext(), selImageList, maxImgCount);
@@ -153,11 +160,24 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
         switch (v.getId()){
 
             case R.id.jiaoshi_baoxiu_tijiao:
-                AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
-                builder.setIcon(R.drawable.yiwancheng).setMessage("你确定提交报修吗？");
-                builder.setPositiveButton("确定",null);
-                builder.setNegativeButton("取消",null);
-                builder.create().show();
+                selfDialog = new SelfDialog(getContext(),R.style.dialog);
+                selfDialog.setMessage("你确定提交报修吗?");
+                selfDialog.setYesOnclickListener("确定", new SelfDialog.onYesOnclickListener() {
+                    @Override
+                    public void onYesClick() {
+                        Toast.makeText(getContext(),"点击了--确定--按钮",Toast.LENGTH_LONG).show();
+                        selfDialog.dismiss();
+                    }
+                });
+                selfDialog.setNoOnclickListener("取消", new SelfDialog.onNoOnclickListener() {
+                    @Override
+                    public void onNoClick() {
+                        Toast.makeText(getContext(),"点击了--取消--按钮",Toast.LENGTH_LONG).show();
+                        selfDialog.dismiss();
+                    }
+                });
+                selfDialog.show();
+                selfDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 break;
         }
 

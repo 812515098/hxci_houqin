@@ -5,13 +5,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import guanliyuan_Fragment.guanliyuan_baoxiufragment;
+import guanliyuan_Fragment.guanliyuan_gongzuotaifragment;
 import guanliyuan_Fragment.guanliyuan_myfragment;
 import guanliyuan_Fragment.guanliyuan_shouyefragement;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,7 +19,7 @@ public class index_guanliyuanActivity extends AppCompatActivity implements View.
     private FragmentManager fm;
     private Fragment mCommonFragmentOne;
     private guanliyuan_myfragment guanliyuan_myframent;
-    private guanliyuan_Fragment.guanliyuan_baoxiufragment guanliyuan_baoxiufragment;
+    private guanliyuan_gongzuotaifragment guanliyuan_baoxiufragment;
     private guanliyuan_shouyefragement guanliyuan_shouyefragement;
     private Fragment mCurrent;
     private RelativeLayout shouye_Relat,baoxiu_Relat,my_relat;
@@ -124,7 +123,7 @@ public class index_guanliyuanActivity extends AppCompatActivity implements View.
                 hideFragment(guanliyuan_shouyefragement, fragmentTransaction);
                 hideFragment(guanliyuan_myframent, fragmentTransaction);
                 if (guanliyuan_baoxiufragment == null) {
-                    guanliyuan_baoxiufragment = new guanliyuan_baoxiufragment();
+                    guanliyuan_baoxiufragment = new guanliyuan_gongzuotaifragment();
                     fragmentTransaction.add(R.id.guanliyuan_content_layout, guanliyuan_baoxiufragment);
                 } else {
                     mCurrent = guanliyuan_baoxiufragment;

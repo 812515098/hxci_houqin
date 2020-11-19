@@ -39,7 +39,6 @@ public class index_weixiurenyuanActivity extends AppCompatActivity implements Vi
     }*/
 
     protected void initView() {
-
         shouye_Relat = findViewById(R.id.weixiurenyuan_shouye_Relat);
         shouye_Relat.setOnClickListener(this);
         baoxiu_Relat =  findViewById(R.id.weixiurenyuan_baoxiu_relat);

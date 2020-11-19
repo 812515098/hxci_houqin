@@ -93,15 +93,15 @@
                android:layout_centerHorizontal="true"
                android:layout_marginTop="10dp"
                android:background="@drawable/jianyi"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="调温记录"
-                android:textSize="15sp"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/black"
                 android:layout_below="@id/jianyi_IB"
-              />
+                android:layout_centerHorizontal="true"
+                android:text="投诉详情"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
     </RelativeLayout>
        </LinearLayout>
    </LinearLayout>

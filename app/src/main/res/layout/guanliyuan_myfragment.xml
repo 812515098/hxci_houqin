@@ -56,6 +56,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/guanliyuan_quanbudingdan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -79,8 +80,7 @@
                     android:layout_toEndOf="@+id/guanliyuan_img_dingdan"
                     android:text="全部订单"
                     android:textColor="@color/black"
-                    android:textSize="19sp"
-                    />
+                    android:textSize="19sp" />
 
                 <ImageView
                     android:layout_width="25dip"
@@ -106,6 +106,7 @@
                 android:paddingTop="10dp">
 
                 <LinearLayout
+                    android:id="@+id/guanliyuan_daichuli"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -126,6 +127,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/guanliyuan_yiwancheng"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -146,6 +148,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/guanliyuan_daipingjia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -184,6 +187,7 @@
             android:background="@color/white">
 
             <RelativeLayout
+                android:id="@+id/guanliyuan_zhanghaoshezhi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -207,8 +211,7 @@
                     android:layout_toEndOf="@+id/guanliyuan_img_zhanghaoshezhi"
                     android:text="账号设置"
                     android:textColor="@color/black"
-                    android:textSize="19sp"
-                    />
+                    android:textSize="19sp" />
 
                 <ImageView
                     android:layout_width="25dip"
@@ -225,7 +228,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#E7E7DF" />
+
             <RelativeLayout
+                android:id="@+id/guanliyuan_tiaowenshezhi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -237,8 +242,8 @@
                     android:id="@+id/guanliyuan_img_tiaowenshehzhi"
                     android:layout_width="25dip"
                     android:layout_height="25dip"
-                    android:layout_marginStart="1dp"
                     android:layout_gravity="center"
+                    android:layout_marginStart="1dp"
                     android:scaleType="centerInside"
                     android:src="@drawable/tiaowen" />
 
@@ -266,7 +271,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#E7E7DF" />
+
             <RelativeLayout
+                android:id="@+id/guanliyuan_gongzuoxiangqing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

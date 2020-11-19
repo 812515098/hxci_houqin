@@ -31,6 +31,7 @@ import java.util.List;
 
 public class tiaowenshengqingActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
     private List<TiaoWenBean> list01=new ArrayList<>();
+    private ImageView taowen_tuichu;
     private ListViewAdapter adapter;
     private EditText etStartTime;
     private EditText etEndTime;
@@ -55,11 +56,13 @@ public class tiaowenshengqingActivity extends AppCompatActivity implements View.
         etStartTime =findViewById(R.id.tioawen_qishitime);
         etEndTime =findViewById(R.id.tiaowen_jieshutime);
         StartTime=findViewById(R.id.tioawen_qishi);
+        taowen_tuichu=findViewById(R.id.taowen_tuichu);
         EndTime=findViewById(R.id.tiaowen_jieshu);
         xuesheng_tiaowen_tijiao =findViewById(R.id.xuesheng_tiaowen_tijiao);
         xuesheng_tiaowen_tijiao.setOnClickListener(this);
         StartTime.setOnTouchListener(this);
         EndTime.setOnTouchListener(this);
+        taowen_tuichu.setOnClickListener(this);
     }
 
     @Override
@@ -87,8 +90,10 @@ public class tiaowenshengqingActivity extends AppCompatActivity implements View.
                 selfDialog.show();
                 selfDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 break;
+            case R.id. taowen_tuichu:
+                finish();
+                break;
         }
-
     }
 
     @Override
@@ -105,24 +110,20 @@ public class tiaowenshengqingActivity extends AppCompatActivity implements View.
                     cal.get(Calendar.MONTH),
                     cal.get(Calendar.DAY_OF_MONTH),
                     null);
-
             timePicker.setIs24HourView(true);
             timePicker.setCurrentHour(cal.get(Calendar.HOUR_OF_DAY));
             timePicker.setCurrentMinute(Calendar.MINUTE);
-
             if (v.getId() == R.id.tioawen_qishi) {
                 final int inType = etStartTime.getInputType();
                 etStartTime.setInputType(InputType.TYPE_NULL);
                 StartTime.onTouchEvent(event);
                 etStartTime.setInputType(inType);
                 etStartTime.setSelection(etStartTime.getText().length());
-
                 builder.setTitle("选取起始时间");
                 builder.setPositiveButton("确  定", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         StringBuffer sb = new StringBuffer();
                         sb.append(String.format("%d-%02d-%02d",
                                 datePicker.getYear(),
@@ -145,13 +146,11 @@ public class tiaowenshengqingActivity extends AppCompatActivity implements View.
                 etEndTime.onTouchEvent(event);
                 etEndTime.setInputType(inType);
                 etEndTime.setSelection(etEndTime.getText().length());
-
                 builder.setTitle("选取结束时间");
                 builder.setPositiveButton("确  定", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         StringBuffer sb = new StringBuffer();
                         sb.append(String.format("%d-%02d-%02d",
                                 datePicker.getYear(),
@@ -166,14 +165,11 @@ public class tiaowenshengqingActivity extends AppCompatActivity implements View.
                     }
                 });
             }
-
             Dialog dialog = builder.create();
             dialog.show();
         }
         return false;
     }
-
-
     public class ListViewAdapter extends BaseAdapter {
         int pagerCount=3;
         private  int index=0;
@@ -195,25 +191,20 @@ public class tiaowenshengqingActivity extends AppCompatActivity implements View.
             }
             notifyDataSetChanged();
         }
-
         @Override
         public int getCount()      {
             //数据大于页数*每页个数,显示默认数字,小于时显示剩余的
             int current = index * pagerCount;
             return list01.size() - current < pagerCount ? list01.size() - current : pagerCount;
-
         }
-
         @Override
         public Object getItem(int i) {
             return null;
         }
-
         @Override
         public long getItemId(int i) {
             return 0;
         }
-
         public View getView(int position, View convertView, ViewGroup parent) {
             View view= LayoutInflater.from(context).inflate(R.layout.tiaowenshenqing_item,parent,false);
             int pos = position + index * pagerCount;
@@ -226,8 +217,6 @@ public class tiaowenshengqingActivity extends AppCompatActivity implements View.
             didian.setText(list.get(position).getDidian());
             zhuangtai.setText(list.get(position).getZhuangtai());
             return view;
-
         }
     }
-
 }

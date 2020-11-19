@@ -1,19 +1,19 @@
-package xuesheng_Fragment;
+package com.example.myapplication;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.myapplication.Adapter.ImagePickerAdapter;
 import com.example.myapplication.Adapter.SelfDialog;
-import com.example.myapplication.GlideImageLoader;
-import com.example.myapplication.R;
-import com.example.myapplication.SelectDialog;
 import com.isseiaoki.simplecropview.FreeCropImageView;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
@@ -24,38 +24,25 @@ import com.lzy.imagepicker.view.CropImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-public class xuesheng_baoxiufragment extends xuesheng_BaseFragment implements ImagePickerAdapter.OnRecyclerViewItemClickListener  ,View.OnClickListener{
-  private View mContentView;
-    private SelfDialog selfDialog;
+public class tousujianyiActivity extends AppCompatActivity implements ImagePickerAdapter.OnRecyclerViewItemClickListener ,View.OnClickListener{
     public static final int IMAGE_ITEM_ADD = -1;
     public static final int REQUEST_CODE_SELECT = 100;
     public static final int REQUEST_CODE_PREVIEW = 101;
+    private Button tousujianyi_tijiao;
     private ImagePickerAdapter adapter;
-    private Button tijiao;
+    private SelfDialog selfDialog;
     private ArrayList<ImageItem> selImageList; //当前选择的所有图片
     private int maxImgCount = 4;               //允许选择图片最大数
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mContext = getActivity();
-        mContentView= inflater.inflate(R.layout.xuesheng_baoxiufragment,container,false);
+        setContentView(R.layout.activity_tousujianyi);
+        tousujianyi_tijiao=findViewById(R.id.tousujianyi_tijiao);
         initImagePicker();
         initWidget();
-        tijiao.setOnClickListener(this);
-        return mContentView;
+        tousujianyi_tijiao.setOnClickListener(this);
     }
-
     private void initImagePicker() {
-        tijiao=mContentView.findViewById(R.id.xuesheng_baoxiu_tijiao);
         ImagePicker imagePicker = ImagePicker.getInstance();
         imagePicker.setMultiMode(false);                      //多选
         imagePicker.setImageLoader(new GlideImageLoader());   //设置图片加载器
@@ -70,22 +57,22 @@ public class xuesheng_baoxiufragment extends xuesheng_BaseFragment implements Im
         imagePicker.setOutPutY(1000);                         //保存文件的高度。单位像素
     }
     private void initWidget() {
-        RecyclerView recyclerView = mContentView.findViewById(R.id.xuesheng_recyclerView);
+
+        RecyclerView recyclerView = findViewById(R.id.tousujianyi_recyclerView);
         selImageList = new ArrayList<>();
-        adapter = new ImagePickerAdapter(getContext(), selImageList, maxImgCount);
+        adapter = new ImagePickerAdapter(tousujianyiActivity.this, selImageList, maxImgCount);
         adapter.setOnItemClickListener(this);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
-      recyclerView.setHasFixedSize(true);
-       recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(tousujianyiActivity.this, 4));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
     }
     private SelectDialog showDialog(SelectDialog.SelectDialogListener listener, List<String> names) {
-        SelectDialog dialog = new SelectDialog(getActivity(), R.style.transparentFrameWindowStyle, listener, names);
-        if (!getActivity().isFinishing()) {
+        SelectDialog dialog = new SelectDialog(tousujianyiActivity.this, R.style.transparentFrameWindowStyle, listener, names);
+        if (!tousujianyiActivity.this.isFinishing()) {
             dialog.show();
         }
         return dialog;
     }
-
     @Override
     public void onItemClick(View view, int position) {
         switch (position) {
@@ -102,7 +89,7 @@ public class xuesheng_baoxiufragment extends xuesheng_BaseFragment implements Im
                                 ImagePicker.getInstance().setSelectLimit(maxImgCount - selImageList.size());
                                 ImagePicker.getInstance().setMultiMode(false);
                                 ImagePicker.getInstance().setFreeCrop(true, FreeCropImageView.CropMode.FREE);
-                                Intent intent = new Intent(getActivity(), ImageGridActivity.class);
+                                Intent intent = new Intent(tousujianyiActivity.this, ImageGridActivity.class);
                                 intent.putExtra(ImageGridActivity.EXTRAS_TAKE_PICKERS, true); // 是否是直接打开相机
                                 startActivityForResult(intent, REQUEST_CODE_SELECT);
                                 break;
@@ -110,7 +97,7 @@ public class xuesheng_baoxiufragment extends xuesheng_BaseFragment implements Im
                                 //打开选择,本次允许选择的数量
                                 ImagePicker.getInstance().setSelectLimit(maxImgCount - selImageList.size());
                                 ImagePicker.getInstance().setMultiMode(true);
-                                Intent intent1 = new Intent(getActivity(), ImageGridActivity.class);
+                                Intent intent1 = new Intent(tousujianyiActivity.this, ImageGridActivity.class);
                                 startActivityForResult(intent1, REQUEST_CODE_SELECT);
                                 break;
                             default:
@@ -121,7 +108,7 @@ public class xuesheng_baoxiufragment extends xuesheng_BaseFragment implements Im
                 break;
             default:
                 //打开预览
-                Intent intentPreview = new Intent(getContext(), ImagePreviewDelActivity.class);
+                Intent intentPreview = new Intent(tousujianyiActivity.this, ImagePreviewDelActivity.class);
                 intentPreview.putExtra(ImagePicker.EXTRA_IMAGE_ITEMS, (ArrayList<ImageItem>) adapter.getImages());
                 intentPreview.putExtra(ImagePicker.EXTRA_SELECTED_IMAGE_POSITION, position);
                 intentPreview.putExtra(ImagePicker.EXTRA_FROM_ITEMS,true);
@@ -152,25 +139,22 @@ public class xuesheng_baoxiufragment extends xuesheng_BaseFragment implements Im
             }
         }
     }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-
-            case R.id.xuesheng_baoxiu_tijiao:
-                selfDialog = new SelfDialog(getContext(),R.style.dialog);
-                selfDialog.setMessage("你确定提交报修吗?");
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.tousujianyi_tijiao:
+                selfDialog = new SelfDialog(tousujianyiActivity.this,R.style.dialog);
+                selfDialog.setMessage("你确定提交投诉吗?");
                 selfDialog.setYesOnclickListener("确定", new SelfDialog.onYesOnclickListener() {
                     @Override
                     public void onYesClick() {
-                        Toast.makeText(getContext(),"点击了--确定--按钮",Toast.LENGTH_LONG).show();
+                        Toast.makeText(tousujianyiActivity.this,"点击了--确定--按钮",Toast.LENGTH_LONG).show();
                         selfDialog.dismiss();
                     }
                 });
                 selfDialog.setNoOnclickListener("取消", new SelfDialog.onNoOnclickListener() {
                     @Override
                     public void onNoClick() {
-                        Toast.makeText(getContext(),"点击了--取消--按钮",Toast.LENGTH_LONG).show();
+                        Toast.makeText(tousujianyiActivity.this,"点击了--取消--按钮",Toast.LENGTH_LONG).show();
                         selfDialog.dismiss();
                     }
                 });
@@ -178,5 +162,6 @@ public class xuesheng_baoxiufragment extends xuesheng_BaseFragment implements Im
                 selfDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 break;
         }
+
     }
 }

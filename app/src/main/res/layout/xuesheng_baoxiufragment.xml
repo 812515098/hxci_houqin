@@ -221,20 +221,24 @@
 
         </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:paddingTop="5dp"
-                android:id="@+id/xuesheng_recyclerView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:choiceMode="singleChoice"
-                android:divider="@null"
-                android:fadingEdge="none"
-                android:listSelector="@android:color/transparent"
-                android:scrollbarStyle="outsideOverlay"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="4"
-                tools:listitem="@layout/list_item_image" />
+                android:layout_height="80dp">
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/xuesheng_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:choiceMode="singleChoice"
+                    android:divider="@null"
+                    android:fadingEdge="none"
+                    android:listSelector="@android:color/transparent"
+                    android:paddingTop="5dp"
+                    android:scrollbarStyle="outsideOverlay"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="4"
+                    tools:listitem="@layout/list_item_image" />
+            </LinearLayout>
             <Button
                 android:id="@+id/xuesheng_baoxiu_tijiao"
                 android:layout_width="wrap_content"

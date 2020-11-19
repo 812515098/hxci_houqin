@@ -85,7 +85,7 @@
              android:layout_height="wrap_content"
             >
            <ImageButton
-               android:id="@+id/jianyi_IB"
+               android:id="@+id/xuesheng_tousu_IB"
                android:layout_width="50dp"
                android:layout_height="50dp"
                android:layout_weight="1"
@@ -100,7 +100,7 @@
                 android:textSize="15sp"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/black"
-                android:layout_below="@id/jianyi_IB"
+                android:layout_below="@id/xuesheng_tousu_IB"
               />
     </RelativeLayout>
        </LinearLayout>

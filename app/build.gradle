@@ -21,6 +21,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.xingliuhua:xlhratingbar_lib:1.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha04'
     api 'com.cysion:ImagePicker:1.2.0.x'
     implementation 'androidx.appcompat:appcompat:1.0.2'
@@ -28,7 +29,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
-
+    implementation 'com.google.code.gson:gson:2.8.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
 }

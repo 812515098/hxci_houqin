@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
 
-public class guanliyuan_baoxiufragment extends guanliyuan_BaseFragment {
+public class guanliyuan_gongzuotaifragment extends guanliyuan_BaseFragment {
 
     private View mContentView;
     @Override

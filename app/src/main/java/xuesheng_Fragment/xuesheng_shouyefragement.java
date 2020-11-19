@@ -16,6 +16,7 @@ import com.example.myapplication.Bean.XinxichaxunBean;
 import com.example.myapplication.R;
 import com.example.myapplication.baoxiumesaageActivity;
 import com.example.myapplication.tongzhiActivity;
+import com.example.myapplication.tousujianyiActivity;
 import com.example.myapplication.xinxichaxunActivity;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import jiaoshi_Fragment.jiaoshi_BaseFragment;
 
 public class xuesheng_shouyefragement extends xuesheng_BaseFragment {
     private View mContentView;
-    private ImageButton xuesheng_baoxiu_IB,xuesheng_chaxun_IB;
+    private ImageButton xuesheng_baoxiu_IB,xuesheng_chaxun_IB,xuesheng_tousu_IB;
     ListView messagelv;
     ArrayList data ;
     ArrayAdapter<String> myadapter;
@@ -42,6 +43,7 @@ public class xuesheng_shouyefragement extends xuesheng_BaseFragment {
         messagelv= mContentView.findViewById(R.id.xuesheng_messagelv);
         xuesheng_chaxun_IB=  mContentView.findViewById(R.id.xuesheng_chaxun_IB);
         xuesheng_baoxiu_IB=mContentView.findViewById(R.id.xuesheng_baoxiu_IB);
+        xuesheng_tousu_IB=mContentView.findViewById(R.id.xuesheng_tousu_IB);
         myadapter=new ArrayAdapter<String>(mContext,android.R.layout.simple_list_item_1,list());
         messagelv.setAdapter(myadapter);
         xuesheng_chaxun_IB.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +71,13 @@ public class xuesheng_shouyefragement extends xuesheng_BaseFragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), baoxiumesaageActivity.class);
+                startActivity(intent);
+            }
+        });
+        xuesheng_tousu_IB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), tousujianyiActivity.class);
                 startActivity(intent);
             }
         });
