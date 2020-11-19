@@ -137,15 +137,15 @@ public class loginActivity extends Activity implements View.OnClickListener {
                                 editor.commit();
                                 switch (LoginResultBean.getUser().getIdentity()) {
                                     case 1:
-                                        Intent intent1 = new Intent(loginActivity.this, index_xueshengActivity.class);//学生
+                                        Intent intent1 = new Intent(loginActivity.this,index_jiaoshiActivity. class);//老师
                                         startActivity(intent1);
                                         break;
                                     case 2:
-                                        Intent intent2= new Intent(loginActivity.this, index_jiaoshiActivity.class);//教师
+                                        Intent intent2= new Intent(loginActivity.this, index_weixiurenyuanActivity.class);//工人
                                         startActivity(intent2);
                                         break;
                                     case 3:
-                                        Intent intent3 = new Intent(loginActivity.this, index_weixiurenyuanActivity.class);//维修人员
+                                        Intent intent3 = new Intent(loginActivity.this, index_xueshengActivity.class);//学生
                                         startActivity(intent3);
                                         break;
                                     case 4:
