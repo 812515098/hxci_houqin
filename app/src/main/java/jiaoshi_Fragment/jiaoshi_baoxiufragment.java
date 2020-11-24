@@ -1,8 +1,14 @@
 package jiaoshi_Fragment;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +20,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import xuesheng_Fragment.xuesheng_BaseFragment;
 
 import com.example.myapplication.Adapter.ImagePickerAdapter;
@@ -21,7 +35,12 @@ import com.example.myapplication.Adapter.SelfDialog;
 import com.example.myapplication.GlideImageLoader;
 import com.example.myapplication.R;
 import com.example.myapplication.SelectDialog;
+import com.example.myapplication.http.HttpCallBack;
+import com.example.myapplication.http.HttpError;
+import com.example.myapplication.http.HttpURL;
 import com.example.myapplication.tousujianyiActivity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.isseiaoki.simplecropview.FreeCropImageView;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
@@ -29,12 +48,18 @@ import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.lzy.imagepicker.ui.ImagePreviewDelActivity;
 import com.lzy.imagepicker.view.CropImageView;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements ImagePickerAdapter.OnRecyclerViewItemClickListener ,View.OnClickListener {
     private View mContentView;
     private SelfDialog selfDialog;
+    private ProgressDialog progressDialog;
     public static final int IMAGE_ITEM_ADD = -1;
     public static final int REQUEST_CODE_SELECT = 100;
     public static final int REQUEST_CODE_PREVIEW = 101;
@@ -80,6 +105,19 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+    }
+
+    /**
+     * 圆圈加载进度的 dialog
+     */
+    private void showWaiting() {
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setIcon(R.mipmap.ic_launcher);
+        progressDialog.setMessage("提交中...");
+        progressDialog.setIndeterminate(true);// 是否形成一个加载动画  true表示不明确加载进度形成转圈动画  false 表示明确加载进度
+        progressDialog.setCancelable(false);//点击返回键或者dialog四周是否关闭dialog  true表示可以关闭 false表示不可关闭
+        progressDialog.show();
+
     }
     private SelectDialog showDialog(SelectDialog.SelectDialogListener listener, List<String> names) {
         SelectDialog dialog = new SelectDialog(getActivity(), R.style.transparentFrameWindowStyle, listener, names);
@@ -166,6 +204,20 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
                     @Override
                     public void onYesClick() {
                         Toast.makeText(getContext(),"点击了--确定--按钮",Toast.LENGTH_LONG).show();
+                        showWaiting();
+                        Insertbaoxiu("测试3", "测试3", "测试3", "测试3", "测试3", "测试3", "测试3", "测试3", 1, selImageList,1, new HttpCallBack() {
+                            @Override
+                            public void onSuccess() {
+                                selImageList.clear();
+                                adapter.setImages(selImageList);
+                        }
+
+                            @Override
+                            public void onFaild(HttpError httpError) {
+
+                            }
+                        });
+
                         selfDialog.dismiss();
                     }
                 });
@@ -182,5 +234,186 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
         }
 
     }
+
+    public static Bitmap getSmallBitmap(String filePath) {
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;//只解析图片边沿，获取宽高
+        BitmapFactory.decodeFile(filePath, options);
+        // 计算缩放比
+        options.inSampleSize = calculateInSampleSize(options, 480, 800);
+        // 完整解析图片返回bitmap
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeFile(filePath, options);
+    }
+    public static int calculateInSampleSize(BitmapFactory.Options options,
+                                            int reqWidth, int reqHeight) {
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+        if (height > reqHeight || width > reqWidth) {
+            final int heightRatio = Math.round((float) height / (float) reqHeight);
+            final int widthRatio = Math.round((float) width / (float) reqWidth);
+            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+        }
+        return inSampleSize;
+    }
+    /**
+     * 获取图片的旋转角度
+     *
+     * @param filePath
+     * @return
+     */
+    public static int getRotateAngle(String filePath) {
+        int rotate_angle = 0;
+        try {
+            ExifInterface exifInterface = new ExifInterface(filePath);
+            int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    rotate_angle = 90;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    rotate_angle = 180;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    rotate_angle = 270;
+                    break;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return rotate_angle;
+    }
+    /**
+     * 旋转图片角度
+     *
+     * @param angle
+     * @param bitmap
+     * @return
+     */
+    public static Bitmap setRotateAngle(int angle, Bitmap bitmap) {
+
+        if (bitmap != null) {
+            Matrix m = new Matrix();
+            m.postRotate(angle);
+            bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+                    bitmap.getHeight(), m, true);
+            return bitmap;
+        }
+        return bitmap;
+
+    }
+
+    /**
+     * 图片压缩-质量压缩
+     *
+     * @param filePath 源图片路径
+     * @return 压缩后的路径
+     */
+
+    public static String compressImage(String filePath) {
+
+        //原文件
+        File oldFile = new File(filePath);
+        //压缩文件路径 照片路径/
+        String targetPath = oldFile.getPath();
+        int quality = 50;//压缩比例0-100
+        Bitmap bm = getSmallBitmap(filePath);//获取一定尺寸的图片
+        int degree = getRotateAngle(filePath);//获取相片拍摄角度
+
+        if (degree != 0) {//旋转照片角度，防止头像横着显示
+            bm = setRotateAngle(degree, bm);
+        }
+        File outputFile = new File(targetPath);
+        try {
+            if (!outputFile.exists()) {
+                outputFile.getParentFile().mkdirs();
+                //outputFile.createNewFile();
+            } else {
+                outputFile.delete();
+            }
+            FileOutputStream out = new FileOutputStream(outputFile);
+            bm.compress(Bitmap.CompressFormat.JPEG, quality, out);
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return filePath;
+        }
+        return outputFile.getPath();
+    }
+
+//参数名	必选	类型	说明
+//repairSchool	是	string	报修校区
+//repairAdress 	是	string	报修地点
+//subTel 	是	string	提交人电话
+//detailAdress 	是	string	详细地点
+//repairType	是	string	报修种类
+//repairContent 	是	string	报修内容
+//repairLevel	是	string	维修等级
+//repairInfo	是	string	详细说明
+//userId	是	int	用户id
+//repairPhoto	是	string	报修图片1
+//repairPhoto2	是	string	报修图片2
+//repairPhoto3	是	string	报修图片3
+//repairPhoto4	是	string	报修图片4
+//repairNo	是	int	工单号
+    public void Insertbaoxiu(String repairSchool, String reapirAdress,String repairType, String subTel, String detailAdress, String repairContent, String repairLevel, String repairInfo, int userId,ArrayList<ImageItem> list, int repairNo, final HttpCallBack callBack) {
+        OkHttpClient client = new OkHttpClient();
+        MultipartBody.Builder requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM);
+        for (int i = 0; i < list.size(); i++) {
+            File f = new File(compressImage(list.get(i).path));
+            RequestBody body = RequestBody.create(MediaType.parse("image/*"), f);
+            requestBody.addFormDataPart("repairPhoto", f.getName(), body);
+        }
+        requestBody.addFormDataPart("repairSchool", repairSchool);
+        requestBody.addFormDataPart("repairAdress",  reapirAdress);
+        requestBody.addFormDataPart("repairType", subTel);
+        requestBody.addFormDataPart("detailAdress",detailAdress);
+        requestBody.addFormDataPart("repairType", repairType);
+        requestBody.addFormDataPart("repairLevel ", repairLevel );
+        requestBody.addFormDataPart("repairInfo", repairInfo);
+        requestBody.addFormDataPart("userId", userId+"");
+        requestBody.addFormDataPart("repairNo", repairNo+"");
+        Request request = new Request.Builder()
+                .url(HttpURL.BAOXIU_INSERT)
+                .post(requestBody.build())
+                .build();
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, final IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String ig = response.body().string();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (ig .equals("ok")) {
+                            if (callBack != null){
+                                callBack.onSuccess();
+                            }
+                            progressDialog.dismiss();
+                            Toast.makeText(getContext(), "报修成功", Toast.LENGTH_LONG).show();
+                        } else {
+                            if (callBack != null) {
+                                callBack.onFaild(new HttpError(-1, "报修失败"));
+                            }
+                            progressDialog.dismiss();
+                            Toast.makeText(getContext(), "报修失败", Toast.LENGTH_LONG).show();
+
+                        }
+                        ;
+                    }
+                });
+
+
+            }
+        });
+
+    }
+
 
 }
