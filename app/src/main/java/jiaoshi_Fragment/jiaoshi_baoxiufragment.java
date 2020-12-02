@@ -1,6 +1,5 @@
 package jiaoshi_Fragment;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,12 +7,15 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,7 +30,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import xuesheng_Fragment.xuesheng_BaseFragment;
 
 import com.example.myapplication.Adapter.ImagePickerAdapter;
 import com.example.myapplication.Adapter.SelfDialog;
@@ -37,16 +38,18 @@ import com.example.myapplication.R;
 import com.example.myapplication.SelectDialog;
 import com.example.myapplication.http.HttpCallBack;
 import com.example.myapplication.http.HttpError;
+import com.example.myapplication.http.HttpSyncPostUtil;
 import com.example.myapplication.http.HttpURL;
-import com.example.myapplication.tousujianyiActivity;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.isseiaoki.simplecropview.FreeCropImageView;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.lzy.imagepicker.ui.ImagePreviewDelActivity;
 import com.lzy.imagepicker.view.CropImageView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -56,9 +59,35 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static android.util.Log.e;
+
 public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements ImagePickerAdapter.OnRecyclerViewItemClickListener ,View.OnClickListener {
+    //维修校区
+    private String xiaoqu[] ;
+    //维修地点
+   private Map<String,String[]>didian= new HashMap<String, String[]>();;
+    //维修分类
+    private String fenlei[] ;
+    //维修分类
+    private Map<String,String[]> neirong= new HashMap<String, String[]>();;
+    //维修等级
+    private String dengji[] = new String[]{"普通","加急"};
+    //获取的Json
+    private JSONObject mJsonObj1;
+
+    private JSONObject mJsonObj2;
+
     private View mContentView;
     private SelfDialog selfDialog;
+    private  String baoxiufenlei_shuju[]= new String[]{"江西","湖南"};
+    //下拉菜单
+    private Spinner baoxiufenlei, baoxiuneirong, weixiudengji,baoxiuxiaoqu, baoxiudidian;
+
+    ArrayAdapter<String> baoxiuleibieAdapter = null;
+    ArrayAdapter<String> baoxiuwupinAdapter = null;
+    ArrayAdapter<String> baoxiuxiaoquAdapter = null;
+    ArrayAdapter<String> baoxiudidianAdapter = null;
+
     private ProgressDialog progressDialog;
     public static final int IMAGE_ITEM_ADD = -1;
     public static final int REQUEST_CODE_SELECT = 100;
@@ -76,7 +105,15 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContext = getActivity();
         mContentView= inflater.inflate(R.layout.jiaoshi_baoxiufragment,container,false);
+        baoxiufenlei =mContentView.findViewById(R.id.jiaoshi_bx_fenlei);
+        baoxiuneirong =mContentView.findViewById(R.id.jiaoshi_bx_content);
+        weixiudengji =mContentView.findViewById(R.id.jiaoshi_bx_dengji);
+        baoxiuxiaoqu =mContentView.findViewById(R.id.jiaoshi_xiaoqu);
+        baoxiudidian =mContentView.findViewById(R.id.jiaoshi_jiaoxuelou);
+        //图片拍照和相册
         initImagePicker();
+        getleibie();
+        getdidian();
         initWidget();
         tijiao.setOnClickListener(this);
         return mContentView;
@@ -342,6 +379,29 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
         return outputFile.getPath();
     }
 
+
+//获取类别报修的Json
+    public void getleibie() {
+        Map<String, String> mapParams = new HashMap<String, String>();
+        mapParams.put("appkey", getContext().getPackageName());
+        mapParams.put("secret", "IOTCARE");
+        Map<String, String> mapUrl = new HashMap<String, String>();
+        mapUrl.put("url", HttpURL.BAOXIULEIXING);
+        HttpSyncPostUtil httpLoginPost = new HttpSyncPostUtil(mHandler, 1);
+        httpLoginPost.execute(mapUrl, mapParams);
+    }
+
+    //获取类报修地点的Json
+    public void getdidian() {
+        Map<String, String> mapParams = new HashMap<String, String>();
+        mapParams.put("appkey", getContext().getPackageName());
+        mapParams.put("secret", "IOTCARE");
+        Map<String, String> mapUrl = new HashMap<String, String>();
+        mapUrl.put("url", HttpURL.BAOXIULEIXING);
+        HttpSyncPostUtil httpLoginPost = new HttpSyncPostUtil(mHandler, 0);
+        httpLoginPost.execute(mapUrl, mapParams);
+    }
+
 //参数名	必选	类型	说明
 //repairSchool	是	string	报修校区
 //repairAdress 	是	string	报修地点
@@ -414,6 +474,123 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
         });
 
     }
+//类别Json解析
+    private void initleibieDatas() {
+        try {
+            JSONArray jsonArray = mJsonObj1.getJSONArray("list");
+          fenlei = new String[jsonArray.length()];
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonP = jsonArray.getJSONObject(i);
+                String province = jsonP.getString("value");
+               fenlei[i] = province;
+                JSONArray jsonCs = null;
+                try {
+                    jsonCs = jsonP.getJSONArray("childNode");
+                } catch (Exception e1) {
+                    continue;
+                }
+                String[] mCitiesDatas = new String[jsonCs.length()];
+                for (int j = 0; j < jsonCs.length(); j++) {
+                    JSONObject jsonCity = jsonCs.getJSONObject(j);
+                    String city = jsonCity.getString("value");
+                    mCitiesDatas[j] = city;
+                    JSONArray jsonAreas = null;
+                    try {
+                        jsonAreas = jsonCity.getJSONArray("childNode");
+                    } catch (Exception e) {
+                        continue;
+                    }
+                }
+              neirong.put(province, mCitiesDatas);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        mJsonObj1 = null;
+    }
+    //类别选择spinner 二级联动
+    private void setwupinSpinner() {
+        baoxiuleibieAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, fenlei);
+        baoxiufenlei .setAdapter(baoxiuleibieAdapter);
+        baoxiufenlei.setSelection(0, true);//设置默认选中项
+        baoxiuwupinAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,neirong.get(fenlei[0]));
+        baoxiuneirong.setAdapter(baoxiuwupinAdapter);
+        baoxiuneirong.setSelection(0, true);  //默认选中第0个
+        baoxiufenlei.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                baoxiuwupinAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, neirong.get(fenlei[position]));
+                baoxiuneirong.setAdapter(baoxiuwupinAdapter);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+    //地点选择spinner 二级联动
+    private void setdiidanSpinner() {
+        baoxiuxiaoquAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, xiaoqu);
+        baoxiuxiaoqu .setAdapter(baoxiuxiaoquAdapter);
+        baoxiuxiaoqu.setSelection(0, true);//设置默认选中项
+        baoxiudidianAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,didian.get(xiaoqu[0]));
+        baoxiudidian.setAdapter(baoxiudidianAdapter);
+        baoxiudidian.setSelection(0, true);  //默认选中第0个
+        baoxiuxiaoqu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                baoxiudidianAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, didian.get(xiaoqu[position]));
+                baoxiudidian.setAdapter(baoxiudidianAdapter);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
+    private Handler mHandler = new Handler() {
+        public void handleMessage(Message msg){
+            if (msg.what ==0) {
+
+                Object object = msg.obj;
+                if (object != null) {
+                    try {
+                        mJsonObj1 = new JSONObject(object.toString());
+                        initleibieDatas();
+                        setdiidanSpinner() ;
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "服务器错误", Toast.LENGTH_LONG).show();
+                }
+
+            }else
+                if (msg.what == 1) {
+                Bundle bundle = msg.getData();
+                Object object = msg.obj;
+                if (object != null) {
+                    try {
+                        mJsonObj2 = new JSONObject(object.toString());
+                        initleibieDatas();
+                        setwupinSpinner();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "服务器错误", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+        }
+
+
+
+    };
 
 }
