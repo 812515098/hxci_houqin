@@ -2,6 +2,7 @@ package jiaoshi_Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -76,8 +78,12 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
     private String dengji[] = new String[]{"普通","加急"};
     //获取的Json
     private JSONObject mJsonObj1;
-
+    private EditText Adress;//报修内容
+    private EditText Info;//详细说明
+    private EditText TEL;//报修人手机
+    private String sno;//报修人ID
     private JSONObject mJsonObj2;
+    private SharedPreferences sp;
 
     private View mContentView;
     private SelfDialog selfDialog;
@@ -112,7 +118,13 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
         weixiudengji =mContentView.findViewById(R.id.jiaoshi_bx_dengji);
         baoxiuxiaoqu =mContentView.findViewById(R.id.jiaoshi_xiaoqu);
         baoxiudidian =mContentView.findViewById(R.id.jiaoshi_jiaoxuelou);
+        Adress =mContentView.findViewById(R.id.jiaoshi_baoxiudizhi);
+        Info=mContentView.findViewById(R.id.jiaoshi_bx_xiangqing);
+        TEL =mContentView.findViewById(R.id.jiaoshi_lianxifangshi);
+        sno = sp.getString("USERID", "");
+
         //图片拍照和相册
+
         initImagePicker();
         getleibie();
         getdidian();
@@ -247,7 +259,7 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
                         //生成工单号
                         SimpleDateFormat sfDate = new SimpleDateFormat("yyyyMMddHHmmssSSS");
                         String strDate = sfDate.format(new Date());
-                        Insertbaoxiu(baoxiuxiaoqu.getSelectedItem().toString(), baoxiudidian.getSelectedItem().toString(), baoxiufenlei.getSelectedItem().toString(), "测试3", baoxiuneirong.getSelectedItem().toString(), "测试3", weixiudengji.getSelectedItem().toString(), "测试3", "", selImageList,strDate, new HttpCallBack() {
+                        Insertbaoxiu(baoxiuxiaoqu.getSelectedItem().toString(), baoxiudidian.getSelectedItem().toString(), baoxiufenlei.getSelectedItem().toString(), TEL.getText().toString(), Adress.getText().toString(), baoxiuneirong.getSelectedItem().toString(), weixiudengji.getSelectedItem().toString(), Info.getText().toString(), sno, selImageList,strDate, new HttpCallBack() {
                             @Override
                             public void onSuccess() {
                                 selImageList.clear();
