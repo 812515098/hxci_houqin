@@ -54,7 +54,9 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -242,7 +244,10 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
                     public void onYesClick() {
                         Toast.makeText(getContext(),"点击了--确定--按钮",Toast.LENGTH_LONG).show();
                         showWaiting();
-                        Insertbaoxiu("测试3", "测试3", "测试3", "测试3", "测试3", "测试3", "测试3", "测试3", 1, selImageList,1, new HttpCallBack() {
+                        //生成工单号
+                        SimpleDateFormat sfDate = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+                        String strDate = sfDate.format(new Date());
+                        Insertbaoxiu(baoxiuxiaoqu.getSelectedItem().toString(), baoxiudidian.getSelectedItem().toString(), baoxiufenlei.getSelectedItem().toString(), "测试3", baoxiuneirong.getSelectedItem().toString(), "测试3", weixiudengji.getSelectedItem().toString(), "测试3", "", selImageList,strDate, new HttpCallBack() {
                             @Override
                             public void onSuccess() {
                                 selImageList.clear();
@@ -397,7 +402,7 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
         mapParams.put("appkey", getContext().getPackageName());
         mapParams.put("secret", "IOTCARE");
         Map<String, String> mapUrl = new HashMap<String, String>();
-        mapUrl.put("url", HttpURL.BAOXIULEIXING);
+        mapUrl.put("url", HttpURL.PLACESELECT);
         HttpSyncPostUtil httpLoginPost = new HttpSyncPostUtil(mHandler, 0);
         httpLoginPost.execute(mapUrl, mapParams);
     }
@@ -417,7 +422,7 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
 //repairPhoto3	是	string	报修图片3
 //repairPhoto4	是	string	报修图片4
 //repairNo	是	int	工单号
-    public void Insertbaoxiu(String repairSchool, String reapirAdress,String repairType, String subTel, String detailAdress, String repairContent, String repairLevel, String repairInfo, int userId,ArrayList<ImageItem> list, int repairNo, final HttpCallBack callBack) {
+    public void Insertbaoxiu(String repairSchool, String reapirAdress,String repairType, String subTel, String detailAdress, String repairContent, String repairLevel, String repairInfo, String userId,ArrayList<ImageItem> list, String repairNo, final HttpCallBack callBack) {
         OkHttpClient client = new OkHttpClient();
         MultipartBody.Builder requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM);
         for (int i = 0; i < list.size(); i++) {
@@ -432,8 +437,8 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
         requestBody.addFormDataPart("repairType", repairType);
         requestBody.addFormDataPart("repairLevel ", repairLevel );
         requestBody.addFormDataPart("repairInfo", repairInfo);
-        requestBody.addFormDataPart("userId", userId+"");
-        requestBody.addFormDataPart("repairNo", repairNo+"");
+        requestBody.addFormDataPart("userId", userId);
+        requestBody.addFormDataPart("repairNo", repairNo);
         Request request = new Request.Builder()
                 .url(HttpURL.BAOXIU_INSERT)
                 .post(requestBody.build())
@@ -474,10 +479,45 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
         });
 
     }
+    //地点Json解析
+    private void initdidianDatas() {
+        try {
+            JSONArray jsonArray = mJsonObj1.getJSONArray("list");
+            xiaoqu = new String[jsonArray.length()];
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonP = jsonArray.getJSONObject(i);
+                String province = jsonP.getString("value");
+                xiaoqu[i] = province;
+                JSONArray jsonCs = null;
+                try {
+                    jsonCs = jsonP.getJSONArray("childNode");
+                } catch (Exception e1) {
+                    continue;
+                }
+                String[] mCitiesDatas = new String[jsonCs.length()];
+                for (int j = 0; j < jsonCs.length(); j++) {
+                    JSONObject jsonCity = jsonCs.getJSONObject(j);
+                    String city = jsonCity.getString("value");
+                    mCitiesDatas[j] = city;
+                    JSONArray jsonAreas = null;
+                    try {
+                        jsonAreas = jsonCity.getJSONArray("childNode");
+                    } catch (Exception e) {
+                        continue;
+                    }
+                }
+                didian.put(province, mCitiesDatas);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        mJsonObj1 = null;
+    }
 //类别Json解析
     private void initleibieDatas() {
         try {
-            JSONArray jsonArray = mJsonObj1.getJSONArray("list");
+            JSONArray jsonArray = mJsonObj2.getJSONArray("list");
           fenlei = new String[jsonArray.length()];
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonP = jsonArray.getJSONObject(i);
@@ -507,10 +547,11 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
             e.printStackTrace();
         }
 
-        mJsonObj1 = null;
+        mJsonObj2 = null;
     }
+
     //类别选择spinner 二级联动
-    private void setwupinSpinner() {
+    private void setleibieSpinner() {
         baoxiuleibieAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, fenlei);
         baoxiufenlei .setAdapter(baoxiuleibieAdapter);
         baoxiufenlei.setSelection(0, true);//设置默认选中项
@@ -560,7 +601,8 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
                 if (object != null) {
                     try {
                         mJsonObj1 = new JSONObject(object.toString());
-                        initleibieDatas();
+
+                       initdidianDatas();
                         setdiidanSpinner() ;
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -571,13 +613,12 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
 
             }else
                 if (msg.what == 1) {
-                Bundle bundle = msg.getData();
                 Object object = msg.obj;
                 if (object != null) {
                     try {
                         mJsonObj2 = new JSONObject(object.toString());
                         initleibieDatas();
-                        setwupinSpinner();
+                        setleibieSpinner();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

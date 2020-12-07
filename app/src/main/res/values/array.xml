@@ -30,7 +30,7 @@
         <item>卫生间灯不亮</item>
     </string-array>
     <string-array name="bx_dengji">
-        <item>维修等级</item>
+
         <item>普通</item>
         <item>加急</item>
     </string-array>
