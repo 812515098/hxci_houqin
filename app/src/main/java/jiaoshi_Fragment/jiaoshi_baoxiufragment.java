@@ -10,6 +10,7 @@ import android.media.ExifInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,10 +122,14 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
         Adress =mContentView.findViewById(R.id.jiaoshi_baoxiudizhi);
         Info=mContentView.findViewById(R.id.jiaoshi_bx_xiangqing);
         TEL =mContentView.findViewById(R.id.jiaoshi_lianxifangshi);
+        sp = getActivity().getSharedPreferences("userinfo", 0);
         sno = sp.getString("USERID", "");
 
+        //报修等级spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, dengji);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        weixiudengji.setAdapter(adapter);
         //图片拍照和相册
-
         initImagePicker();
         getleibie();
         getdidian();
@@ -247,18 +252,24 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
 
     public void onClick(View v) {
         switch (v.getId()){
-
             case R.id.jiaoshi_baoxiu_tijiao:
                 selfDialog = new SelfDialog(getContext(),R.style.dialog);
                 selfDialog.setMessage("你确定提交报修吗?");
                 selfDialog.setYesOnclickListener("确定", new SelfDialog.onYesOnclickListener() {
                     @Override
                     public void onYesClick() {
-                        Toast.makeText(getContext(),"点击了--确定--按钮",Toast.LENGTH_LONG).show();
-                        showWaiting();
+
                         //生成工单号
                         SimpleDateFormat sfDate = new SimpleDateFormat("yyyyMMddHHmmssSSS");
                         String strDate = sfDate.format(new Date());
+                        if (TEL.getText().toString().equals("")||Adress.getText().toString().equals(""))
+                        {
+                            Toast.makeText(getContext(),"必填项不能为空",Toast.LENGTH_LONG).show();
+
+
+                        }else{
+                         showWaiting();
+                        Log.e("aaa",baoxiuxiaoqu.getSelectedItem().toString()+ baoxiudidian.getSelectedItem().toString()+baoxiufenlei.getSelectedItem().toString()+TEL.getText().toString()+Adress.getText().toString()+baoxiuneirong.getSelectedItem().toString()+weixiudengji.getSelectedItem().toString()+ Info.getText().toString()+"学号"+sno+strDate);
                         Insertbaoxiu(baoxiuxiaoqu.getSelectedItem().toString(), baoxiudidian.getSelectedItem().toString(), baoxiufenlei.getSelectedItem().toString(), TEL.getText().toString(), Adress.getText().toString(), baoxiuneirong.getSelectedItem().toString(), weixiudengji.getSelectedItem().toString(), Info.getText().toString(), sno, selImageList,strDate, new HttpCallBack() {
                             @Override
                             public void onSuccess() {
@@ -270,7 +281,7 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
                             public void onFaild(HttpError httpError) {
 
                             }
-                        });
+                        });}
 
                         selfDialog.dismiss();
                     }
@@ -444,9 +455,10 @@ public class jiaoshi_baoxiufragment extends jiaoshi_BaseFragment implements Imag
         }
         requestBody.addFormDataPart("repairSchool", repairSchool);
         requestBody.addFormDataPart("repairAdress",  reapirAdress);
-        requestBody.addFormDataPart("repairType", subTel);
-        requestBody.addFormDataPart("detailAdress",detailAdress);
         requestBody.addFormDataPart("repairType", repairType);
+        requestBody.addFormDataPart("detailAdress",detailAdress);
+        requestBody.addFormDataPart("subTel", subTel);
+        requestBody.addFormDataPart("repairContent",repairContent );
         requestBody.addFormDataPart("repairLevel ", repairLevel );
         requestBody.addFormDataPart("repairInfo", repairInfo);
         requestBody.addFormDataPart("userId", userId);
