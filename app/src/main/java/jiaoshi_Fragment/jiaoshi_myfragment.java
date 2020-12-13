@@ -3,12 +3,14 @@ package jiaoshi_Fragment;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +24,9 @@ public class jiaoshi_myfragment extends jiaoshi_BaseFragment implements View.OnC
     private View mContentView;
     private LinearLayout daichuli,yiwancheng,daipingjia;
     private RelativeLayout quanbudingdan,  zhanghaoshezhi,tiaowenshezhi;
+    private TextView name;
+    private SharedPreferences sp;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +35,7 @@ public class jiaoshi_myfragment extends jiaoshi_BaseFragment implements View.OnC
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        sp = getActivity().getSharedPreferences("userinfo", 0);
         mContext = getActivity();
        mContentView= inflater.inflate(R.layout.jiaoshi_myfragment,container,false);
         daichuli=mContentView.findViewById(R.id.jiaoshi_daichuli);
@@ -38,6 +44,8 @@ public class jiaoshi_myfragment extends jiaoshi_BaseFragment implements View.OnC
         quanbudingdan=mContentView.findViewById(R.id.jiaoshi_quanbudingdan);
         zhanghaoshezhi  =mContentView.findViewById(R.id.jiaoshi_zhanghaoshezhi);
         tiaowenshezhi=mContentView.findViewById(R.id.jiaoshi_tiaowenshezhi);
+        name=mContentView.findViewById(R.id.name);
+        name.setText( sp.getString("USER_NAME", ""));
         daichuli.setOnClickListener(this);
         yiwancheng.setOnClickListener(this);
         daipingjia.setOnClickListener(this);

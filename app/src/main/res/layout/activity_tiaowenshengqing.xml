@@ -82,6 +82,8 @@
         <ListView
             android:id="@+id/tiaowen_listview"
             android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_height="103dp"
             android:layout_above="@+id/r1_list"
             android:layout_marginBottom="4dp" />
@@ -283,7 +285,7 @@
 
 
                         android:background="@null"
-                        android:hint="联系方式（必填）"
+                        android:hint="具体地点（必填）"
                         android:singleLine="true"
                         android:textSize="12dp"></EditText>
                 </LinearLayout>
