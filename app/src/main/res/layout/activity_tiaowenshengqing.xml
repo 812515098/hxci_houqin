@@ -81,12 +81,10 @@
 
         <ListView
             android:id="@+id/tiaowen_listview"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_height="103dp"
-            android:layout_above="@+id/r1_list"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginRight="10dp" />
 
         <RelativeLayout
             android:id="@+id/r1_list"
@@ -282,8 +280,6 @@
                         style="@style/Editxcolor"
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
-
-
                         android:background="@null"
                         android:hint="具体地点（必填）"
                         android:singleLine="true"

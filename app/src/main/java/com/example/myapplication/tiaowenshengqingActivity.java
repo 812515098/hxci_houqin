@@ -224,6 +224,30 @@ public class tiaowenshengqingActivity extends AppCompatActivity implements View.
                 String result = bundle.getString("code");
                 Object object = msg.obj;
                 Log.e("eee",msg.obj+"--");
+                getJson();
+                yeshu=(list01.size()%pagerCount==0?list01.size()/pagerCount:list01.size()/pagerCount+1);
+                if((list01.size()%pagerCount)==0){
+                    num.setText( yeshu+"");
+                }else {
+                    num.setText(yeshu+ "");
+                }
+                if ((list01.size()/pagerCount)==0)
+                {
+                    xiayiye.setVisibility(View.INVISIBLE);
+                    shangyiye.setVisibility(View.INVISIBLE);
+                }
+                shangyiye.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        prePager();
+                    }
+                });
+                xiayiye.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        nexPager();
+                    }
+                });
             }
         }
     };
@@ -442,8 +466,15 @@ public class tiaowenshengqingActivity extends AppCompatActivity implements View.
 
            shijian.setText(devices.get(position).getSubTime().toString().substring(0,10));
          yuanyin.setText(devices.get(position).getTemReason());
+         String tiaowenzjiangtia=devices.get(position).getStatusStr();
+         if (tiaowenzjiangtia.equals("未调温"))
+         {
+             zhuangtai.setText(devices.get(position).getStatusStr());
+            zhuangtai.setBackgroundResource(R.drawable.text_shape);
+            zhuangtai.setTextColor(tiaowenshengqingActivity.this.getResources().getColor(R.color.white));
+         }else    zhuangtai.setText(devices.get(position).getStatusStr());
          didian.setText(devices.get(position).getTemAdress()+devices.get(position).getDetailAdress());
-         zhuangtai.setText(devices.get(position).getStatusStr());
+
             return view;
         }
     }
