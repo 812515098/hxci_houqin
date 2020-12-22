@@ -7,4 +7,5 @@ public class HttpURL {
     public static String TIAOWENINSERT="http://hxcihq.com/temp/addTemperature";
     public static String BAOXIULEIXING="http://app.greathiit.com/hxci-admin/wangshuai/getDictQRkinds";
     public static String PLACESELECT="http://app.greathiit.com/hxci-admin/wangshuai/getDict";
+    public static String SHOUYEMAGINFO="http://hxcihq.com/msg/MsgInfo";
 }

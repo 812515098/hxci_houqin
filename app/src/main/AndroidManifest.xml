@@ -24,15 +24,17 @@
         <activity android:name=".zhanghaoshezhiActivity" />
         <activity android:name=".index_guanliyuanActivity" />
         <activity android:name=".index_weixiurenyuanActivity" />
-        <activity android:name=".index_xueshengActivity" />
-        <activity
-            android:name=".loginActivity"
-            android:theme="@style/login">
+        <activity android:name=".index_xueshengActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".loginActivity"
+            android:theme="@style/login">
+
         </activity>
         <activity android:name=".SettingActivity" />
         <activity android:name=".index_jiaoshiActivity" />
