@@ -15,6 +15,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.myapplication.Bean.WeixiurenShouyeMsgList;
+
+import java.util.ArrayList;
+
 public class index_weixiurenyuanActivity extends AppCompatActivity implements View.OnClickListener {
     private FragmentManager fm;
     private Fragment mCommonFragmentOne;
@@ -26,6 +30,9 @@ public class index_weixiurenyuanActivity extends AppCompatActivity implements Vi
     private ImageView shouye_im,baoxiu_im,my_im;
     private TextView shouye_tv,baoxiu_tv,my_tv;
     private long exitTime = 0;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

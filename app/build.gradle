@@ -41,4 +41,8 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
     implementation 'com.alibaba:fastjson:1.2.61'
 
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation 'com.github.Aspsine:SwipeToLoadLayout:1.0.4'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
+    'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
 }
